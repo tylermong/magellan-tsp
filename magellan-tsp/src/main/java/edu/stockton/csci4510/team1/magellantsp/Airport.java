@@ -3,8 +3,8 @@ package edu.stockton.csci4510.team1.magellantsp;
 public class Airport {
   private String country;
   private String airportName;
-  double latitude;
-  double longitude;
+  private double latitude;
+  private double longitude;
 
   public Airport(String country, String airportName, double latitude, double longitude) {
     this.country = country;
