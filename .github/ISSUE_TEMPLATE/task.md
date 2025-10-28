@@ -3,7 +3,7 @@ name: Task
 about: Track miscellaneous development work (refactoring, documentation updates, or
   small improvements that aren't new features or bugs)
 title: ''
-labels: ''
+labels: task
 assignees: ''
 
 ---
