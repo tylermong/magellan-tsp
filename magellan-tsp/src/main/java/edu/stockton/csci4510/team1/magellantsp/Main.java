@@ -9,6 +9,7 @@ public class Main {
   public static void main(String[] args) throws IOException {
     List<Airport> airports = importAirports();
   }
+  
   public void localSearchTSP(){
     //add info here
   }
@@ -28,7 +29,6 @@ public class Main {
     //add code here
   }
   
-  public void 
   private static List<Airport> importAirports() throws IOException {
     List<Airport> airports = new ArrayList<>();
 
