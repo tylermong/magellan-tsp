@@ -45,6 +45,14 @@
         </plugins>
     </build>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.cicirello</groupId>
+            <artifactId>chips-n-salsa</artifactId>
+            <version>7.0.2</version>
+        </dependency>
+    </dependencies>
+
     <profiles>
         <profile>
             <id>analysis</id>
