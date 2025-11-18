@@ -12,7 +12,6 @@ import org.cicirello.search.operators.permutations.OrderCrossover;
 import org.cicirello.search.operators.permutations.PartiallyMatchedCrossover;
 
 public class CrossoverTSP {
-
   private final ArrayList<Airport> airports;
   private final double[][] distanceMatrix;
   private final Random rng = new Random();
