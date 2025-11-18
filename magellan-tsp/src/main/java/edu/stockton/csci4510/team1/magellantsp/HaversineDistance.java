@@ -20,10 +20,10 @@ public class HaversineDistance {
         double lat2Rad = Math.toRadians(lat2);
         double dLat = Math.toRadians(lat2 - lat1);
         double dLon = Math.toRadians(lon2 - lon1);
-
-        double a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-                Math.cos(lat1Rad) * Math.cos(lat2Rad) *
-                        Math.sin(dLon / 2) * Math.sin(dLon / 2);
+        double sinDLat = Math.sin(dLat / 2);
+        double sinDLon = Math.sin(dLon / 2);
+        
+        double a = sinDLat * sinDLat + Math.cos(lat1Rad) * Math.cos(lat2Rad) * sinDLon * sinDLon;
 
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         return EARTH_RADIUS_KM * c;
@@ -35,10 +35,15 @@ public class HaversineDistance {
         double[][] matrix = new double[n][n];
 
         for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                matrix[i][j] = (i == j) ? 0.0 : calculateDistance(airports.get(i), airports.get(j));
+            for (int j = i; j < n; j++) { // Start j from i
+              if (i == j) {
+                matrix[i][j] = 0.0;
+              } else {
+                double distance = calculateDistance(airports.get(i), airports.get(j));
+                matrix[i][j] = matrix[j][i] = distance; // Mirror the value
+              }
             }
-        }
+          }
         return matrix;
     }
 }
