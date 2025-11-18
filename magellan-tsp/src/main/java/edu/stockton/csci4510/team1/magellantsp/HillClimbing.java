@@ -15,47 +15,60 @@ import org.cicirello.search.problems.tsp.TSP;
 
 
 public class HillClimbing {
-
+    /** 
+     * Allows City objects to be made and used for our Travelling Sales Person Problem.
+     * Will store the name, the latitude, and the longitude for each airport
+     */
     static class City {
         final String name;
         final double lat, lon;
         City(String name, double lat, double lon) {
-            this.name = name; this.lat = lat; this.lon = lon;
+            this.name = name; 
+            this.lat = lat; 
+            this.lon = lon;
         }
     }
 
+    /**
+     * Will load the airports from the csv into their own objects and will put them into an arraylist
+     * 
+     * @param csv to extract the lines to seperate into the variables we need
+     * @return ArrayList list containing all city/airport objects
+     */
     static List<City> loadAirports(Path csv) throws IOException {
-        List<String> lines = Files.readAllLines(csv);
+        List<String> lines = Files.readAllLines(csv); //gathers all the lines to process
         if (lines.isEmpty()) throw new IllegalArgumentException("empty csv");
 
-        String[] headers = lines.get(0).split(",");
+        String[] headers = lines.get(0).split(","); //grabs the first line (0) index, and splits the line into every part where the comma will split
         Map<String,Integer> idx = new HashMap<>();
         for (int i = 0; i < headers.length; i++)
-            idx.put(headers[i].trim().toLowerCase(), i);
+            idx.put(headers[i].trim().toLowerCase(), i); //removes spaces and will make everything lower case, inserting into a hashmap
 
-        Integer iName = idx.getOrDefault("name", idx.getOrDefault("airport_name", 0));
-        Integer iLat  = idx.getOrDefault("latitude_deg", idx.getOrDefault("lat", 1));
-        Integer iLon  = idx.getOrDefault("longitude_deg", idx.getOrDefault("lon", 2));
+        //following hashmap operators will examine for the lkabel name to see the header name
+        Integer iName = idx.getOrDefault("name", idx.getOrDefault("airport_name", 0)); 
+        Integer iLat  = idx.getOrDefault("latitude", idx.getOrDefault("lat", 1));
+        Integer iLon  = idx.getOrDefault("longitude", idx.getOrDefault("lon", 2));
+
 
         List<City> list = new ArrayList<>();
         for (int r = 1; r < lines.size(); r++) {
-            String line = lines.get(r).trim();
-            if (line.isEmpty()) continue;
-            String[] t = line.split(",");
+            String line = lines.get(r).trim(); //again we are trimming each line of our csv, for this instance we will look at one line
+            if (line.isEmpty()) continue; //skips empty lines (not needed for our csv but just in case)
+            String[] t = line.split(","); //split lines at commas and put them into this new list t 
             try {
-                String name = t[iName].trim();
+                String name = t[iName].trim(); //will find the proper indexing using iX and and will trim all extra spaces off of it
                 double lat = Double.parseDouble(t[iLat].trim());
                 double lon = Double.parseDouble(t[iLon].trim());
-                list.add(new City(name, lat, lon));
+                list.add(new City(name, lat, lon)); //put all the trimmed info from the csv into the new ArrayList and will return it
             } catch (Exception ignore) {
-                // skip malformed lines
+
             }
         }
         return list;
     }
 
     public static void main(String[] args) throws Exception {
-        // Default CSV path (same default as your example). Override by passing path as first arg.
+
         String fallback = System.getProperty("user.home") +
         "/IdeaProjects/ProjectTwo/magellan-tsp/magellan-tsp/src/main/resources/international_airports.csv";
 
@@ -79,21 +92,19 @@ public class HillClimbing {
         double[] xs = new double[n];
         double[] ys = new double[n];
         for (int i = 0; i < n; i++) {
-            xs[i] = cities.get(i).lon; // lon -> x
-            ys[i] = cities.get(i).lat; // lat -> y
+            xs[i] = cities.get(i).lon; 
+            ys[i] = cities.get(i).lat;
         }
 
-        // Build TSP instance from coordinates
+
         TSP.DoubleMatrix tsp = new TSP.DoubleMatrix(xs, ys);
 
-        // Configure RNG used by chips-n-salsa (optional, mirrors your other snippet)
+
         Configurator.configureRandomGenerator(213);
 
-        // initializer
         PermutationInitializer init = new PermutationInitializer(n);
 
-        final int restarts = 10; // number of random restarts per search (same idea as your SA optimize iterations)
-        // FIRST-DESCENT (first improvement) hill climbers
+        final int restarts = 10;
         FirstDescentHillClimber<Permutation> hcFirstReversal =
             new FirstDescentHillClimber<>(tsp, new ReversalMutation(), init);
         SolutionCostPair<Permutation> solutionHCFirstReversal = hcFirstReversal.optimize(restarts);
@@ -106,7 +117,6 @@ public class HillClimbing {
             new FirstDescentHillClimber<>(tsp, new SwapMutation(), init);
         SolutionCostPair<Permutation> solutionHCFirstSwap = hcFirstSwap.optimize(restarts);
 
-        // STEEPEST-DESCENT hill climbers
         SteepestDescentHillClimber<Permutation> hcSteepReversal =
             new SteepestDescentHillClimber<>(tsp, new ReversalMutation(), init);
         SolutionCostPair<Permutation> solutionHCSteepReversal = hcSteepReversal.optimize(restarts);
@@ -119,7 +129,8 @@ public class HillClimbing {
             new SteepestDescentHillClimber<>(tsp, new SwapMutation(), init);
         SolutionCostPair<Permutation> solutionHCSteepSwap = hcSteepSwap.optimize(restarts);
 
-        // Print results using same style as your SA example
+
+        //for right now, just to test when i figure out to run
         System.out.println("------------------------------");
         System.out.println("HILL CLIMBERS");
         System.out.println("------------------------------");
@@ -133,7 +144,7 @@ public class HillClimbing {
         System.out.printf("%-20s%15.3f%n", "steepest_swap", solutionHCSteepSwap.getCost());
         System.out.println("------------------------------");
 
-        // choose the best of all runs
+        //choose the best of all runs
         List<SolutionCostPair<Permutation>> all = Arrays.asList(
             solutionHCFirstReversal, solutionHCFirstInsertion, solutionHCFirstSwap,
             solutionHCSteepReversal, solutionHCSteepInsertion, solutionHCSteepSwap);
