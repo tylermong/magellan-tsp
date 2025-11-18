@@ -10,9 +10,9 @@ public class Main {
     List<Airport> airports = importAirports();
     crossoverTSP(airports);
   }
-
-  public void localSearchTSP() {
-    // add info here
+  
+  public void localSearchTSP(){
+    //add info here
   }
 
   public void simmulatedAnnealingTSP() {
@@ -32,8 +32,8 @@ public class Main {
   public void tylerTSP() {
     // add code here
   }
-
-  public static List<Airport> importAirports() throws IOException {
+  
+  private static List<Airport> importAirports() throws IOException {
     List<Airport> airports = new ArrayList<>();
 
     InputStream is = Main.class.getClassLoader().getResourceAsStream("international_airports.csv");
