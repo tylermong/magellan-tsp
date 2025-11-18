@@ -17,7 +17,7 @@ public class CrossoverTSP {
   private final double[][] distanceMatrix;
   private final Random rng = new Random();
 
-  //Parameters can be changed to see different results
+  // Parameters can be changed to see different results
   private static final int POP_SIZE = 50;
   private static final int GENERATIONS = 100;
   private static final int TOURNAMENT_K = 3;
@@ -28,7 +28,6 @@ public class CrossoverTSP {
     this.airports = airports;
     this.distanceMatrix = HaversineDistance.buildDistanceMatrix(airports);
   }
-
 
   private Permutation tournamentSelect(List<Permutation> pop, int k) {
     Permutation best = null;
@@ -44,7 +43,7 @@ public class CrossoverTSP {
     return best;
   }
 
-  //Computes length for a permutation of the matrix.
+  // Computes length for a permutation of the matrix.
   private double tourCost(Permutation tour) {
     double cost = 0.0;
     final int n = tour.length();
@@ -56,7 +55,7 @@ public class CrossoverTSP {
     return cost;
   }
 
-  //Compare crossovers over multiple runs
+  // Compare crossovers over multiple runs
   public void runExperiment() {
     final int n = airports.size();
 
