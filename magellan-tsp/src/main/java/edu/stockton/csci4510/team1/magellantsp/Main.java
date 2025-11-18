@@ -8,28 +8,32 @@ public class Main {
 
   public static void main(String[] args) throws IOException {
     List<Airport> airports = importAirports();
-  }
-  public void localSearchTSP(){
-    //add info here
+    crossoverTSP(airports);
   }
 
-  public void simmulatedAnnealingTSP(){
-    //add code here
-  }
-  
-  public void mutationTSP(){
-    //add code here
+  public void localSearchTSP() {
+    // add info here
   }
 
-  public void crossoverTSP(){
-    //add code here
+  public void simmulatedAnnealingTSP() {
+    // add code here
   }
-  public void tylerTSP(){
-    //add code here
+
+  public void mutationTSP() {
+    // add code here
   }
-  
-  public void 
-  private static List<Airport> importAirports() throws IOException {
+
+  public static void crossoverTSP(List<Airport> airports) {
+    // add code here
+    CrossoverTSP crossover = new CrossoverTSP(new ArrayList<>(airports));
+    crossover.runExperiment();
+  }
+
+  public void tylerTSP() {
+    // add code here
+  }
+
+  public static List<Airport> importAirports() throws IOException {
     List<Airport> airports = new ArrayList<>();
 
     InputStream is = Main.class.getClassLoader().getResourceAsStream("international_airports.csv");
@@ -50,11 +54,6 @@ public class Main {
         Airport airport = new Airport(country, airportName, latitude, longitude);
         airports.add(airport);
       }
-    }
-
-    // Print all airports
-    for (Airport airport : airports) {
-      System.out.println(airport);
     }
 
     return airports;
