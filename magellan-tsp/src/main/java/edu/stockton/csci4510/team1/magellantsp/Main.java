@@ -9,26 +9,27 @@ public class Main {
   public static void main(String[] args) throws IOException {
     List<Airport> airports = importAirports();
   }
-  public void localSearchTSP(){
-    //add info here
+
+  public void localSearchTSP() {
+    // add info here
   }
 
-  public void simmulatedAnnealingTSP(){
-    //add code here
-  }
-  
-  public void mutationTSP(){
-    //add code here
+  public void simmulatedAnnealingTSP() {
+    // add code here
   }
 
-  public void crossoverTSP(){
-    //add code here
+  public void mutationTSP() {
+    // add code here
   }
-  public void tylerTSP(){
-    //add code here
+
+  public void crossoverTSP() {
+    // add code here
   }
-  
-  public void 
+
+  public void tylerTSP() {
+    // add code here
+  }
+
   private static List<Airport> importAirports() throws IOException {
     List<Airport> airports = new ArrayList<>();
 
