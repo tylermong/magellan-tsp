@@ -1,3 +1,5 @@
+package edu.stockton.csci4510.team1.magellantsp.greedy;
+
 public class NearestNeighborSolver {
   public int[] solve(int startNode, double[][] distanceMatrix) {
     int n = distanceMatrix.length;
