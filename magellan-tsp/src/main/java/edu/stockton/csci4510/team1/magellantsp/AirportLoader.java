@@ -1,3 +1,11 @@
+package edu.stockton.csci4510.team1.magellantsp;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+
 public class AirportLoader {
   public static ArrayList<Airport> loadAirports(String filename) {
     ArrayList<Airport> airports = new ArrayList<>();
