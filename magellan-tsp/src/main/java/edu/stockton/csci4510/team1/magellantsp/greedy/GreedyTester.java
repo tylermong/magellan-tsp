@@ -29,6 +29,10 @@ public class GreedyTester {
 
     long startTime = System.currentTimeMillis();
     int[] bestTourIndices = solver.solve(matrix);
+    if (bestTourIndices == null) {
+      System.err.println("Algorithm failed to find a valid tour.");
+      return;
+    }
     long endTime = System.currentTimeMillis();
 
     // Print results
