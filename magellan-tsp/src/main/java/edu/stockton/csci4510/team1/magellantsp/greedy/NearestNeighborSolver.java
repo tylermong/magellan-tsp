@@ -24,6 +24,10 @@ public class NearestNeighborSolver {
         }
       }
 
+      // Validate that a next node was found
+      if (nextNode == -1) {
+        throw new IllegalStateException("Unable to find next node at iteration " + i);
+      }
       // Travel to the found nearest node
       tour[i] = nextNode;
       visited[nextNode] = true;
