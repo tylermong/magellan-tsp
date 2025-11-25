@@ -44,7 +44,7 @@ public class GreedyTester {
       int[] tour, ArrayList<Airport> airports, double[][] matrix, long timeMs) {
 
     RepeatedNearestNeighbor costCalculator = new RepeatedNearestNeighbor();
-    double totalDistance = costCalculator.getTourCost(tour, matrix);
+    double totalDistance = costCalculator.calculateTourCost(tour, matrix);
 
     System.out.println("\n--- RNN Results ---");
     System.out.printf("Execution Time: %d ms\n", timeMs);
