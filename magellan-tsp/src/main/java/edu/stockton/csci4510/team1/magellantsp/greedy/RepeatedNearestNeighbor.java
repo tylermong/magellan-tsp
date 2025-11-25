@@ -28,7 +28,7 @@ public class RepeatedNearestNeighbor {
     return bestTour;
   }
 
-  private double calculateTourCost(int[] tour, double[][] distanceMatrix) {
+  public double calculateTourCost(int[] tour, double[][] distanceMatrix) {
     double cost = 0.0;
 
     // Sum the distances between each consecutive city in the tour
@@ -44,9 +44,5 @@ public class RepeatedNearestNeighbor {
     cost += distanceMatrix[lastCity][firstCity];
 
     return cost;
-  }
-
-  public double getTourCost(int[] tour, double[][] distanceMatrix) {
-    return calculateTourCost(tour, distanceMatrix);
   }
 }
