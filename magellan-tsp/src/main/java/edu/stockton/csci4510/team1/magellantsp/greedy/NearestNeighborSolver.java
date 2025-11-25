@@ -2,7 +2,13 @@ package edu.stockton.csci4510.team1.magellantsp.greedy;
 
 public class NearestNeighborSolver {
   public int[] solve(int startNode, double[][] distanceMatrix) {
+    if (distanceMatrix == null || distanceMatrix.length == 0) {
+      throw new IllegalArgumentException("Distance matrix cannot be null or empty");
+    }
     int n = distanceMatrix.length;
+    if (startNode < 0 || startNode >= n) {
+      throw new IllegalArgumentException("Start node must be between 0 and " + (n - 1));
+    }
     int[] tour = new int[n];
     boolean[] visited = new boolean[n];
 
