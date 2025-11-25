@@ -2,6 +2,9 @@ package edu.stockton.csci4510.team1.magellantsp.greedy;
 
 public class RepeatedNearestNeighbor {
   public int[] solve(double[][] distanceMatrix) {
+    if (distanceMatrix == null || distanceMatrix.length == 0) {
+      throw new IllegalArgumentException("Distance matrix cannot be null or empty");
+    }
     int n = distanceMatrix.length;
     NearestNeighborSolver solver = new NearestNeighborSolver();
 
