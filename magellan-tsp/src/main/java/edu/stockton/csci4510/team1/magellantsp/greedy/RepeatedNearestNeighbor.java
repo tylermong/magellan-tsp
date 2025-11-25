@@ -31,7 +31,7 @@ public class RepeatedNearestNeighbor {
     return bestTour;
   }
 
-  public double calculateTourCost(int[] tour, double[][] distanceMatrix) {
+  public static double calculateTourCost(int[] tour, double[][] distanceMatrix) {
     double cost = 0.0;
 
     // Sum the distances between each consecutive city in the tour
