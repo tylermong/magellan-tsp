@@ -59,25 +59,7 @@ public class CrossoverTSP {
     return cost;
   }
 
-  // Print full step-by-step cost (debug tool)
-  public void printSampleTour(Permutation tour) {
-    System.out.println("\n=== Sample Tour Breakdown ===");
-    double total = 0.0;
-    final int n = tour.length();
-    for (int i = 0; i < n; i++) {
-      int from = tour.get(i);
-      int to = tour.get((i + 1) % n);
-      double legCost = distanceMatrix[from][to];
-      total += legCost;
-      System.out.printf("%3d %-25s -> %3d %-25s = %10.3f km%n",
-          from, airports.get(from),
-          to, airports.get(to),
-          legCost);
-    }
-    System.out.printf("TOTAL COST = %.3f km%n\n", total);
-  }
-
-  // Compare crossovers + 3-Opt refinement
+  // Compare crossovers + 3-Opt
   public void runExperiment() {
     final int n = airports.size();
 
@@ -85,17 +67,16 @@ public class CrossoverTSP {
         List.of(new OrderCrossover(), new PartiallyMatchedCrossover(), new CycleCrossover());
 
     final List<String> names =
-        List.of("Order Crossover (OX)", "Partially Matched (PMX)", "Cycle Crossover (CX)");
+        List.of("OX", "PMX", "CX");
 
     class Stats {
       double best = Double.POSITIVE_INFINITY;
       double worst = Double.NEGATIVE_INFINITY;
-      int runs = 0;
     }
 
     System.out.println("=== Crossover Comparison (best/worst over " 
         + RUNS_PER_OPERATOR + " runs each) ===");
-    System.out.printf("%-28s %12s %12s%n", "Operator", "Best", "Worst");
+    System.out.printf("%-30s %15s %15s%n", "Operator", "Best", "Worst");
 
     for (int xoIndex = 0; xoIndex < crossovers.size(); xoIndex++) {
       String name = names.get(xoIndex);
@@ -149,9 +130,8 @@ public class CrossoverTSP {
         double bestCost = (bestGA != null) ? tourCost(bestGA) : Double.POSITIVE_INFINITY;
         s.best = Math.min(s.best, bestCost);
         s.worst = Math.max(s.worst, bestCost);
-        s.runs++;
 
-        // === APPLY 3-OPT REFINEMENT ===
+        // APPLY
         double localCost = bestCost;
         if (bestGA != null && Double.isFinite(bestCost)) {
           Permutation refined = new Permutation(bestGA);
@@ -167,11 +147,10 @@ public class CrossoverTSP {
         }
         s3.best = Math.min(s3.best, localCost);
         s3.worst = Math.max(s3.worst, localCost);
-        s3.runs++;
       }
 
-      System.out.printf("%-28s %12.3f %12.3f%n", name, s.best, s.worst);
-      System.out.printf("%-28s %12.3f %12.3f%n", name + " + 3-Opt", s3.best, s3.worst);
+      System.out.printf("%-30s %15.3f %15.3f%n", name, s.best, s.worst);
+      System.out.printf("%-30s %15.3f %15.3f%n", name + " + 3-Opt", s3.best, s3.worst);
     }
   }
 
