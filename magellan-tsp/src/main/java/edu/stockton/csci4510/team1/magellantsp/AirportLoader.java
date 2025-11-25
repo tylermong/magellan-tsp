@@ -27,6 +27,11 @@ public class AirportLoader {
       while ((line = br.readLine()) != null) {
         String[] data = line.split(separator);
 
+        if (data.length != 4) {
+          System.err.println("Skipping malformed line: " + line);
+          continue;
+        }
+
         String country = data[0];
         String name = data[1];
         double lat = Double.parseDouble(data[2].trim());
