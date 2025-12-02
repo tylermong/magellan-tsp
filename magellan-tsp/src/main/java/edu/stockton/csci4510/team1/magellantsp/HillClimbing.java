@@ -22,7 +22,6 @@ public class HillClimbing {
   static class City {
     final String name;
     final double lat, lon;
-
     City(String name, double lat, double lon) {
       this.name = name;
       this.lat = lat;
@@ -52,7 +51,7 @@ public class HillClimbing {
           headers[i].trim().toLowerCase(),
           i); // removes spaces and will make everything lower case, inserting into a hashmap
 
-    // following hashmap operators will examine for the lkabel name to see the header name
+    // following hashmap operators will examine for the label name to see the header name
     Integer iName = idx.getOrDefault("name", idx.getOrDefault("airport_name", 0));
     Integer iLat = idx.getOrDefault("latitude", idx.getOrDefault("lat", 1));
     Integer iLon = idx.getOrDefault("longitude", idx.getOrDefault("lon", 2));
@@ -83,7 +82,10 @@ public class HillClimbing {
     }
     return list;
   }
-
+  /**
+   * Main Method for tsp
+   * @throws Exception 
+   */
   public static void main(String[] args) throws Exception {
 
     String fallback =
@@ -143,20 +145,6 @@ public class HillClimbing {
     SteepestDescentHillClimber<Permutation> hcSteepSwap =
         new SteepestDescentHillClimber<>(tsp, new SwapMutation(), init);
     SolutionCostPair<Permutation> solutionHCSteepSwap = hcSteepSwap.optimize(restarts);
-
-    // for right now, just to test when i figure out to run
-    System.out.println("------------------------------");
-    System.out.println("HILL CLIMBERS");
-    System.out.println("------------------------------");
-    System.out.printf("%-20s%15s%n", "search_operator", "distance");
-    System.out.println("------------------------------");
-    System.out.printf("%-20s%15.3f%n", "first_reversal", solutionHCFirstReversal.getCost());
-    System.out.printf("%-20s%15.3f%n", "first_insertion", solutionHCFirstInsertion.getCost());
-    System.out.printf("%-20s%15.3f%n", "first_swap", solutionHCFirstSwap.getCost());
-    System.out.printf("%-20s%15.3f%n", "steepest_reversal", solutionHCSteepReversal.getCost());
-    System.out.printf("%-20s%15.3f%n", "steepest_insertion", solutionHCSteepInsertion.getCost());
-    System.out.printf("%-20s%15.3f%n", "steepest_swap", solutionHCSteepSwap.getCost());
-    System.out.println("------------------------------");
 
     // choose the best of all runs
     List<SolutionCostPair<Permutation>> all =
