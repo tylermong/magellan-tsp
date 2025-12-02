@@ -23,7 +23,7 @@ public class CrossoverTSP {
   private static final int GENERATIONS = 100;
   private static final int TOURNAMENT_K = 3;
   private static final double ELITE_KEEP = 0.05; // keep top 5% elites
-  private static final int RUNS_PER_OPERATOR = 100; // number of runs per xover
+  private static final int RUNS_PER_OPERATOR = 20; // number of runs per xover
   private static final int THREE_OPT_ITERS = 1000; // Number of 3-opt mutation attempts per GA run
 
   public CrossoverTSP(ArrayList<Airport> airports) {
