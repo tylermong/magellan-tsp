@@ -129,7 +129,7 @@ public class CrossoverTSP {
         s.best = Math.min(s.best, bestCost);
         s.worst = Math.max(s.worst, bestCost);
 
-        // APPLY
+        // Apply 3-Opt local search refinement to best GA solution
         double localCost = bestCost;
         if (bestGA != null && Double.isFinite(bestCost)) {
           Permutation refined = new Permutation(bestGA);
