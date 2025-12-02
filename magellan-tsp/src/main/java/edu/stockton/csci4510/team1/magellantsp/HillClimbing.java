@@ -22,6 +22,7 @@ public class HillClimbing {
   static class City {
     final String name;
     final double lat, lon;
+
     City(String name, double lat, double lon) {
       this.name = name;
       this.lat = lat;
@@ -82,9 +83,11 @@ public class HillClimbing {
     }
     return list;
   }
+
   /**
    * Main Method for tsp
-   * @throws Exception 
+   *
+   * @throws Exception
    */
   public static void main(String[] args) throws Exception {
 
@@ -157,7 +160,9 @@ public class HillClimbing {
             solutionHCSteepSwap);
 
     SolutionCostPair<Permutation> best = all.get(0);
-    for (SolutionCostPair<Permutation> s : all) {
+    // equivalent using an index
+    for (int i = 0; i < all.size(); i++) {
+      SolutionCostPair<Permutation> s = all.get(i);
       if (s.getCost() < best.getCost()) best = s;
     }
 
