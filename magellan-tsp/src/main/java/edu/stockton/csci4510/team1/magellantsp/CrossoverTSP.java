@@ -5,13 +5,12 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 import java.util.random.RandomGenerator;
-
 import org.cicirello.permutations.Permutation;
 import org.cicirello.search.operators.CrossoverOperator;
+import org.cicirello.search.operators.UndoableMutationOperator;
 import org.cicirello.search.operators.permutations.CycleCrossover;
 import org.cicirello.search.operators.permutations.OrderCrossover;
 import org.cicirello.search.operators.permutations.PartiallyMatchedCrossover;
-import org.cicirello.search.operators.UndoableMutationOperator;
 import org.cicirello.search.operators.permutations.ThreeOptMutation;
 
 public class CrossoverTSP {
@@ -23,9 +22,9 @@ public class CrossoverTSP {
   private static final int POP_SIZE = 50;
   private static final int GENERATIONS = 100;
   private static final int TOURNAMENT_K = 3;
-  private static final double ELITE_KEEP = 0.05;                 // keep top 5% elites
-  private static final int RUNS_PER_OPERATOR = 100;              // number of runs per xover
-  private static final int THREE_OPT_ITERS = 1000;               // 3-Opt improvement sweeps
+  private static final double ELITE_KEEP = 0.05; // keep top 5% elites
+  private static final int RUNS_PER_OPERATOR = 100; // number of runs per xover
+  private static final int THREE_OPT_ITERS = 1000; // 3-Opt improvement sweeps
 
   public CrossoverTSP(ArrayList<Airport> airports) {
     this.airports = airports;
@@ -66,24 +65,23 @@ public class CrossoverTSP {
     final List<CrossoverOperator<Permutation>> crossovers =
         List.of(new OrderCrossover(), new PartiallyMatchedCrossover(), new CycleCrossover());
 
-    final List<String> names =
-        List.of("OX", "PMX", "CX");
+    final List<String> names = List.of("OX", "PMX", "CX");
 
     class Stats {
       double best = Double.POSITIVE_INFINITY;
       double worst = Double.NEGATIVE_INFINITY;
     }
 
-    System.out.println("=== Crossover Comparison (best/worst over " 
-        + RUNS_PER_OPERATOR + " runs each) ===");
+    System.out.println(
+        "=== Crossover Comparison (best/worst over " + RUNS_PER_OPERATOR + " runs each) ===");
     System.out.printf("%-30s %15s %15s%n", "Operator", "Best", "Worst");
 
     for (int xoIndex = 0; xoIndex < crossovers.size(); xoIndex++) {
       String name = names.get(xoIndex);
       CrossoverOperator<Permutation> xo = crossovers.get(xoIndex);
 
-      Stats s = new Stats();   // GA only
-      Stats s3 = new Stats();  // GA + 3-Opt refinement
+      Stats s = new Stats(); // GA only
+      Stats s3 = new Stats(); // GA + 3-Opt refinement
 
       UndoableMutationOperator<Permutation> threeOpt = new ThreeOptMutation();
 
@@ -153,5 +151,4 @@ public class CrossoverTSP {
       System.out.printf("%-30s %15.3f %15.3f%n", name + " + 3-Opt", s3.best, s3.worst);
     }
   }
-
 }
