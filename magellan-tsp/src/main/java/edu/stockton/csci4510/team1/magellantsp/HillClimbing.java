@@ -168,7 +168,7 @@ public class HillClimbing {
       if (s.getCost() < best.getCost()) best = s;
     }
 
-    System.out.printf("%nBest tour cost: %.3f%n", best.getCost());
+    System.out.print(best.getCost()); //"%nBest tour cost: %.3f%n", 
     System.out.println(
         "Tour order (indices in CSV): " + Arrays.toString(best.getSolution().toArray()));
 
