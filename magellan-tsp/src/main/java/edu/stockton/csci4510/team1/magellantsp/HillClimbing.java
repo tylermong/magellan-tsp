@@ -1,6 +1,7 @@
 package edu.stockton.csci4510.team1.magellantsp;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
 import java.util.*;
 import org.cicirello.permutations.Permutation;
@@ -36,8 +37,17 @@ public class HillClimbing {
    * @param csv to extract the lines to seperate into the variables we need
    * @return ArrayList list containing all city/airport objects
    */
-  static List<City> loadAirports(Path csv) throws IOException {
-    List<String> lines = Files.readAllLines(csv); // gathers all the lines to process
+  static List<City> loadAirports(InputStream csv) throws IOException {
+    // FIX: InputStream must be read manually using BufferedReader
+    BufferedReader reader = new BufferedReader(new InputStreamReader(csv, StandardCharsets.UTF_8));
+
+    // gathers all the lines to process
+    List<String> lines = new ArrayList<>();
+    String line;
+    while ((line = reader.readLine()) != null) {
+      lines.add(line);
+    }
+
     if (lines.isEmpty()) throw new IllegalArgumentException("empty csv");
 
     String[] headers =
@@ -59,16 +69,16 @@ public class HillClimbing {
 
     List<City> list = new ArrayList<>();
     for (int r = 1; r < lines.size(); r++) {
-      String line =
+      String row =
           lines
               .get(r)
               .trim(); // again we are trimming each line of our csv, for this instance we will look
       // at one line
-      if (line.isEmpty()) continue; // skips empty lines (not needed for our csv but just in case)
-      String[] t = line.split(","); // split lines at commas and put them into this new list t
+      if (row.isEmpty()) continue; // skips empty lines (not needed for our csv but just in case)
+      String[] t = row.split(","); // split lines at commas and put them into this new list t
       try {
         String name =
-            t[iName].trim(); // will find the proper indexing using iX and and will trim all extra
+            t[iName].trim(); // will find the proper indexing using iX and will trim all extra
         // spaces off of it
         double lat = Double.parseDouble(t[iLat].trim());
         double lon = Double.parseDouble(t[iLon].trim());
@@ -91,31 +101,23 @@ public class HillClimbing {
    */
   public static void main(String[] args) throws Exception {
 
-    String fallback =
-        System.getProperty("user.home")
-            + "/IdeaProjects/ProjectTwo/magellan-tsp/magellan-tsp/src/main/resources/international_airports.csv";
-
-    Path csv = Paths.get(args.length > 0 ? args[0] : fallback);
-
-    if (!Files.exists(csv)) {
-      throw new FileNotFoundException("CSV file not found: " + csv);
+    InputStream csvStream = //we will now input the csv
+        HillClimbing.class.getClassLoader().getResourceAsStream("international_airports.csv");
+ 
+    if (csvStream == null) {
+      throw new FileNotFoundException("international_airports.csv NOT found in resources folder.");
     }
 
-    if (!Files.exists(csv)) {
-      System.err.println("Airport CSV not found at: " + csv.toString());
-      System.err.println("Pass path as first argument or place CSV at the default location.");
-      System.exit(2);
-    }
+    List<City> cities = loadAirports(csvStream);
 
-    List<City> cities = loadAirports(csv);
     int n = cities.size();
     System.out.println("Loaded " + n + " airports.");
 
-    double[] xs = new double[n];
-    double[] ys = new double[n];
+    double[] xs = new double[n]; //lit of x values for each airport
+    double[] ys = new double[n]; //list of y values for each arport
     for (int i = 0; i < n; i++) {
-      xs[i] = cities.get(i).lon;
-      ys[i] = cities.get(i).lat;
+      xs[i] = cities.get(i).lon; //x = lon
+      ys[i] = cities.get(i).lat; //y = lat
     }
 
     TSP.DoubleMatrix tsp = new TSP.DoubleMatrix(xs, ys);
