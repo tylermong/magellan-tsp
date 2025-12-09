@@ -13,7 +13,7 @@
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
+   
     <build>
         <plugins>
             <plugin>
@@ -78,4 +78,17 @@
             </build>
         </profile>
     </profiles>
+        <dependencies>
+    <dependency>
+        <groupId>org.cicirello</groupId>
+        <artifactId>chips-n-salsa</artifactId>
+        <version>7.0.2</version>
+    </dependency>
+    <dependency>
+        <groupId>org.cicirello</groupId>
+        <artifactId>jpt</artifactId>
+        <version>5.1.0</version>
+    </dependency>
+    </dependencies>
+
 </project>
