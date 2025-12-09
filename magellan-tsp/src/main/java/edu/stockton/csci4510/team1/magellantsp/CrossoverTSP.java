@@ -26,9 +26,9 @@ public class CrossoverTSP {
   private static final int RUNS_PER_OPERATOR = 20; // number of runs per xover
   private static final int THREE_OPT_ITERS = 1000; // Number of 3-opt mutation attempts per GA run
 
-  public CrossoverTSP(ArrayList<Airport> airports) {
+  public CrossoverTSP(ArrayList<Airport> airports, double[][] distanceMatrix) {
     this.airports = airports;
-    this.distanceMatrix = HaversineDistance.buildDistanceMatrix(airports);
+    this.distanceMatrix = distanceMatrix;
   }
 
   // Tournament selection
