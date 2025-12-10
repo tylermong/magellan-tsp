@@ -9,6 +9,7 @@ public class Main {
   public static void main(String[] args) throws IOException {
     List<Airport> airports = importAirports();
     crossoverTSP(airports);
+    runGenEvo(airports);
   }
 
   public void localSearchTSP() {
@@ -31,6 +32,11 @@ public class Main {
 
   public void tylerTSP() {
     // add code here
+  }
+
+  public static void runGenEvo(List<Airport> airports) {
+    GenEvoComputation evo = new GenEvoComputation(new ArrayList<>(airports));
+    evo.runExperiment();
   }
 
   private static List<Airport> importAirports() throws IOException {

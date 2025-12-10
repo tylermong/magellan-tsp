@@ -123,7 +123,6 @@ public class GenEvoComputation {
         worst = Math.max(worst, dist);
       }
 
-        }
       System.out.printf("%-28s %12.3f %12.3f%n", name, best, worst);
     }
   }
