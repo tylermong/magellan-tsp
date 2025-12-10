@@ -63,7 +63,7 @@ public class CrossoverTSP {
     final List<String> names =
         List.of("Order Crossover (OX)", "Partially Matched (PMX)", "Cycle Crossover (CX)");
 
-    //utilized to track best and worst from each generation
+    // utilized to track best and worst from each generation
     class Stats {
       double best = Double.POSITIVE_INFINITY;
       double worst = Double.NEGATIVE_INFINITY;
@@ -79,13 +79,13 @@ public class CrossoverTSP {
       CrossoverOperator<Permutation> xo = crossovers.get(xoIndex);
       Stats s = new Stats();
       for (int runIndex = 0; runIndex < RUNS_PER_OPERATOR; runIndex++) {
-        //Initializes population
+        // Initializes population
         List<Permutation> population = new ArrayList<>(POP_SIZE);
         RandomGenerator rg = rng;
         for (int popIndex = 0; popIndex < POP_SIZE; popIndex++) {
           population.add(new Permutation(n, rg));
         }
-        //Evolutionary loop
+        // Evolutionary loop
         for (int gen = 0; gen < GENERATIONS; gen++) {
           final int eliteCount = Math.max(1, (int) Math.round(population.size() * ELITE_KEEP));
           population.sort(Comparator.comparingDouble(this::tourCost));
