@@ -8,12 +8,7 @@ public class Main {
 
   public static void main(String[] args) throws IOException {
     List<Airport> airports = importAirports();
-
-    // Your original manual GA implementation
     crossoverTSP(airports);
-
-    // Chips-n-Salsa GenerationalEvolutionaryAlgorithm
-    chipsNSalsaGA(airports);
   }
 
   public void localSearchTSP() {
@@ -36,11 +31,6 @@ public class Main {
 
   public void tylerTSP() {
     // add code here
-  }
-
-  public static void chipsNSalsaGA(List<Airport> airports) {
-    GenEvoComputation ga = new GenEvoComputation(new ArrayList<>(airports));
-    ga.runExperiment();
   }
 
   private static List<Airport> importAirports() throws IOException {

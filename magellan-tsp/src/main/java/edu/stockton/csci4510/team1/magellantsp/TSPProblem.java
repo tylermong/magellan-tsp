@@ -6,28 +6,28 @@ import org.cicirello.search.evo.FitnessFunction;
 import org.cicirello.search.problems.Problem;
 
 public class TSPProblem implements FitnessFunction.Double<Permutation> {
-    private double[][] distMatrix;
+  private double[][] distMatrix;
 
-    public TSPProblem(ArrayList<Airport> airports) {
-        this.distMatrix = HaversineDistance.buildDistanceMatrix(airports);
+  public TSPProblem(ArrayList<Airport> airports) {
+    this.distMatrix = HaversineDistance.buildDistanceMatrix(airports);
+  }
+
+  @Override
+  public double fitness(Permutation candidate) {
+    double total = 0.0;
+    int n = candidate.length();
+
+    for (int i = 0; i < n; i++) {
+      int curr = candidate.get(i);
+      int next = candidate.get((i + 1) % n);
+      total += distMatrix[curr][next];
     }
 
-    @Override
-    public double fitness(Permutation candidate) {
-        double total = 0.0;
-        int n = candidate.length();
+    return -total; // negative because we minimize distance
+  }
 
-        for (int i = 0; i < n; i++) {
-            int curr = candidate.get(i);
-            int next = candidate.get((i + 1) % n);
-            total += distMatrix[curr][next];
-        }
-
-        return -total; // negative because we minimize distance
-    }
-
-    @Override
-    public Problem<Permutation> getProblem() {
-        return null;
-    }
+  @Override
+  public Problem<Permutation> getProblem() {
+    return null;
+  }
 }
