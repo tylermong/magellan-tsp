@@ -32,7 +32,6 @@ public class HillClimbingTSP {
       ys[i] = airports.get(i).getLatitude();
     }
 
-
     TSPEdgeDistance haversine =
         new TSPEdgeDistance() {
           @Override
@@ -40,8 +39,8 @@ public class HillClimbingTSP {
             return HaversineDistance.calculateDistance(y1, x1, y2, x2);
           }
         };
-    //pulls the haversine distance to be used as the distance function for edge costs
-    TSP.Double tsp = new TSP.Double(xs, ys, haversine); 
+    // pulls the haversine distance to be used as the distance function for edge costs
+    TSP.Double tsp = new TSP.Double(xs, ys, haversine);
 
     Configurator.configureRandomGenerator(213);
     PermutationInitializer init = new PermutationInitializer(n);
