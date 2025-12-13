@@ -3,6 +3,7 @@ package edu.stockton.csci4510.simulatedAnnealing;
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.*;
+import edu.stockton.csci4510.team1.magellantsp.HaversineDistance;
 
 public class SimulatedAnnealingTSP {
 
@@ -70,6 +71,52 @@ public class SimulatedAnnealingTSP {
         }
 
         return list;
+    }
+
+    // Distance matrix builder using group's Haversine implementation
+    static double[][] buildDistanceMatrix(List<City> cities) {
+        int n = cities.size();
+        double[][] d = new double[n][n];
+
+        for (int i = 0; i < n; i++) {
+            d[i][i] = 0.0;
+
+            City a = cities.get(i);
+            for (int j = i + 1; j < n; j++) {
+                City b = cities.get(j);
+
+                double dist = HaversineDistance.distanceKm(
+                        a.latDeg, a.lonDeg,
+                        b.latDeg, b.lonDeg
+                );
+
+                d[i][j] = dist;
+                d[j][i] = dist;
+            }
+        }
+        return d;
+    }
+
+    // Calculate the total cost of a given tour
+    static double tourCost(int[] tour, double[][] d) {
+        double cost = 0.0;
+        int n = tour.length;
+
+        for (int i = 0; i < n; i++) {
+            int u = tour[i];
+            int v = tour[(i + 1) % n];
+            cost += d[u][v];
+        }
+        return cost;
+    }
+
+    public static void main(String[] args) throws Exception {
+        Path csv = Paths.get("international_airports.csv");
+        List<City> cities = loadAirports(csv);
+
+        double[][] d = buildDistanceMatrix(cities);
+
+        System.out.println("Distance matrix built for " + cities.size() + " airports.");
     }
 
     public static void main(String[] args) throws Exception {
