@@ -23,3 +23,6 @@ Magellan-TSP is a Java-based simulation of the Traveling Salesperson Problem (TS
 ## License
 
 This project is licensed under the [GNU General Public License v3.0](LICENSE).
+
+## How to run program
+java -jar ./target/magellan-tsp-1.0-SNAPSHOT.jar

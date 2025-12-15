@@ -44,6 +44,7 @@ public class HaversineDistance {
         }
       }
     }
+
     return matrix;
   }
 }

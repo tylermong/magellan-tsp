@@ -7,8 +7,9 @@ public class Main {
   List<Airport> airports = new ArrayList<>();
 
   public static void main(String[] args) throws IOException {
-    List<Airport> airports = importAirports();
-    crossoverTSP(airports);
+    ArrayList<Airport> airports = AirportLoader.loadAirports("international_airports.csv");
+    double[][] dMatrix = HaversineDistance.buildDistanceMatrix(airports);
+    crossoverTSP(airports, dMatrix);
     runGenEvo(airports);
   }
 
@@ -24,9 +25,9 @@ public class Main {
     // add code here
   }
 
-  public static void crossoverTSP(List<Airport> airports) {
+  public static void crossoverTSP(List<Airport> airports, double[][] distanceMatrix) {
     // add code here
-    CrossoverTSP crossover = new CrossoverTSP(new ArrayList<>(airports));
+    CrossoverTSP crossover = new CrossoverTSP(new ArrayList<>(airports), distanceMatrix);
     crossover.runExperiment();
   }
 
@@ -37,31 +38,5 @@ public class Main {
   public static void runGenEvo(List<Airport> airports) {
     GenEvoComputation evo = new GenEvoComputation(new ArrayList<>(airports));
     evo.runExperiment();
-  }
-
-  private static List<Airport> importAirports() throws IOException {
-    List<Airport> airports = new ArrayList<>();
-
-    InputStream is = Main.class.getClassLoader().getResourceAsStream("international_airports.csv");
-
-    BufferedReader br = new BufferedReader(new InputStreamReader(is));
-
-    // Skip header row
-    br.readLine();
-
-    String line;
-    while ((line = br.readLine()) != null) {
-      String[] parts = line.split(",");
-      if (parts.length == 4) {
-        String country = parts[0].trim();
-        String airportName = parts[1].trim();
-        double latitude = Double.parseDouble(parts[2].trim());
-        double longitude = Double.parseDouble(parts[3].trim());
-        Airport airport = new Airport(country, airportName, latitude, longitude);
-        airports.add(airport);
-      }
-    }
-
-    return airports;
   }
 }
