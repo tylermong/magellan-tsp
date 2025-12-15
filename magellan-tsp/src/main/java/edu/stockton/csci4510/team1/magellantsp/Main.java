@@ -8,9 +8,9 @@ public class Main {
 
   public static void main(String[] args) throws IOException {
     ArrayList<Airport> airports = AirportLoader.loadAirports("international_airports.csv");
-    // double[][] dMatrix = HaversineDistance.buildDistanceMatrix(airports);
+    double[][] dMatrix = HaversineDistance.buildDistanceMatrix(airports);
     localSearchTSP(airports);
-    // crossoverTSP(airports, dMatrix);
+    crossoverTSP(airports, dMatrix);
   }
 
   public static void localSearchTSP(ArrayList<Airport> airports) {
@@ -28,6 +28,8 @@ public class Main {
 
   public static void crossoverTSP(List<Airport> airports, double[][] distanceMatrix) {
     // add code here
+    CrossoverTSP crossover = new CrossoverTSP(new ArrayList<>(airports), distanceMatrix);
+    crossover.runExperiment();
   }
 
   public void tylerTSP() {
