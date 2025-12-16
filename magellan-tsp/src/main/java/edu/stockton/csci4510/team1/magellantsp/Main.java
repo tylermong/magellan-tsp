@@ -12,6 +12,8 @@ public class Main {
   public static void main(String[] args) throws IOException {
     ArrayList<Airport> airports = AirportLoader.loadAirports("international_airports.csv");
     double[][] distanceMatrix = HaversineDistance.buildDistanceMatrix(airports);
+    SimulatedAnnealingTSP(airports, distanceMatrix);
+    InsertionMutationTSP(airports, distanceMatrix);
     localSearchTSP(airports, distanceMatrix);
     crossoverTSP(airports, distanceMatrix);
     greedyTSP(airports, distanceMatrix);
