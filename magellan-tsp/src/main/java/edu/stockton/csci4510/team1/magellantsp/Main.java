@@ -14,7 +14,7 @@ public class Main {
   }
 
   public static void localSearchTSP(ArrayList<Airport> airports, double[][] distanceMatrix) {
-    HillClimbingTSP hc = new HillClimbingTSP(airports, distanceMatrix);
+    HillClimbingTSP hc = new HillClimbingTSP(distanceMatrix);
     hc.runExperiment();
   }
 

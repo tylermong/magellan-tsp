@@ -1,6 +1,5 @@
 package edu.stockton.csci4510.team1.magellantsp;
 
-import java.util.ArrayList;
 import org.cicirello.permutations.Permutation;
 import org.cicirello.search.Configurator;
 import org.cicirello.search.SolutionCostPair;
@@ -14,17 +13,14 @@ import org.cicirello.search.problems.tsp.TSP;
 import org.cicirello.search.problems.tsp.TSPEdgeDistance;
 
 public class HillClimbingTSP {
-
-  private final ArrayList<Airport> airports;
   private final double[][] distanceMatrix;
 
-  public HillClimbingTSP(ArrayList<Airport> airports, double[][] distanceMatrix) {
-    this.airports = airports;
+  public HillClimbingTSP(double[][] distanceMatrix) {
     this.distanceMatrix = distanceMatrix;
   }
 
   public void runExperiment() {
-    int n = airports.size();
+    int n = distanceMatrix.length;
     System.out.println("Running Hill Climbing TSP on " + n + " airports...\n");
 
     double[] indices = new double[n];
