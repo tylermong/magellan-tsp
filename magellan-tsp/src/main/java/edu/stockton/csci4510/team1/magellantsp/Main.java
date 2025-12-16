@@ -1,5 +1,6 @@
 package edu.stockton.csci4510.team1.magellantsp;
 
+import edu.stockton.csci4510.team1.magellantsp.greedy.GreedyTester;
 import java.io.*;
 import java.util.*;
 
@@ -11,6 +12,7 @@ public class Main {
     double[][] distanceMatrix = HaversineDistance.buildDistanceMatrix(airports);
     localSearchTSP(airports, distanceMatrix);
     crossoverTSP(airports, distanceMatrix);
+    greedyTSP(airports, dMatrix);
   }
 
   public static void localSearchTSP(ArrayList<Airport> airports, double[][] distanceMatrix) {
@@ -32,7 +34,8 @@ public class Main {
     crossover.runExperiment();
   }
 
-  public void tylerTSP() {
-    // add code here
+  public static void greedyTSP(List<Airport> airports, double[][] distanceMatrix) {
+    GreedyTester tester = new GreedyTester(airports, distanceMatrix);
+    tester.runTest();
   }
 }
