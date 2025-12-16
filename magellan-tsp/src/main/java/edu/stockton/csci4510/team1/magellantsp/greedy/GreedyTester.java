@@ -45,7 +45,7 @@ public class GreedyTester {
     double totalDistance = RepeatedNearestNeighbor.calculateTourCost(tour, matrix);
 
     System.out.printf("Execution Time: %d ms\n", timeMs);
-    System.out.println("Tour Order (First 5 Cities):");
+    System.out.println("Tour Order (Abridged):");
 
     // Print tour path and calculate distance
     System.out.print("\tPath: ");
