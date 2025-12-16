@@ -44,7 +44,7 @@ public class HillClimbingTSP {
 
     Configurator.configureRandomGenerator(213);
     PermutationInitializer init = new PermutationInitializer(n);
-    int restarts = 1; // anything but 1 was taking too long locally, must change !!!!!
+    int restarts = 1; // TODO: anything but 1 was taking too long locally
 
     // fd = first descent, st steepest descent
     int totalSteps = 6;
@@ -91,7 +91,6 @@ public class HillClimbingTSP {
     printResult("Steepest Descent / Swap", stSwap);
   }
 
-  // used chatgpt to make a nice formatted output, will change if desired
   private void printResult(String name, SolutionCostPair<Permutation> sol) {
     double cost = ((Number) sol.getCost()).doubleValue();
     System.out.printf("%-30s: Cost = %.3f km%n", name, cost);
