@@ -24,7 +24,6 @@ public class RepeatedNearestNeighbor {
       if (currentCost < bestCost) {
         bestCost = currentCost;
         bestTour = currentTour;
-        System.out.println("New best found starting at node " + startNode + ": " + bestCost);
       }
     }
 

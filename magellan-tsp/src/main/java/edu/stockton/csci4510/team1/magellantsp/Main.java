@@ -12,11 +12,11 @@ public class Main {
   public static void main(String[] args) throws IOException {
     ArrayList<Airport> airports = AirportLoader.loadAirports("international_airports.csv");
     double[][] distanceMatrix = HaversineDistance.buildDistanceMatrix(airports);
-    SimulatedAnnealingTSP(airports, distanceMatrix);
-    InsertionMutationTSP(airports, distanceMatrix);
     localSearchTSP(airports, distanceMatrix);
     crossoverTSP(airports, distanceMatrix);
-    greedyTSP(airports, dMatrix);
+    greedyTSP(airports, distanceMatrix);
+    SimulatedAnnealingTSP(airports, distanceMatrix);
+    InsertionMutationTSP(airports, distanceMatrix);
   }
 
   public static void localSearchTSP(ArrayList<Airport> airports, double[][] distanceMatrix) {
