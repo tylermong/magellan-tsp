@@ -9,14 +9,15 @@ public class Main {
 
   public static void main(String[] args) throws IOException {
     ArrayList<Airport> airports = AirportLoader.loadAirports("international_airports.csv");
-    double[][] dMatrix = HaversineDistance.buildDistanceMatrix(airports);
-
-    crossoverTSP(airports, dMatrix);
+    double[][] distanceMatrix = HaversineDistance.buildDistanceMatrix(airports);
+    localSearchTSP(airports, distanceMatrix);
+    crossoverTSP(airports, distanceMatrix);
     greedyTSP(airports, dMatrix);
   }
 
-  public void localSearchTSP() {
-    // add info here
+  public static void localSearchTSP(ArrayList<Airport> airports, double[][] distanceMatrix) {
+    HillClimbingTSP hc = new HillClimbingTSP(distanceMatrix);
+    hc.runExperiment();
   }
 
   public void simmulatedAnnealingTSP() {
