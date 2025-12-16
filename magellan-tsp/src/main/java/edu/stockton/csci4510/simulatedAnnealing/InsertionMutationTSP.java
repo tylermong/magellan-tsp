@@ -8,11 +8,11 @@ import org.cicirello.search.SolutionCostPair;
 import org.cicirello.search.operators.Initializer;
 import org.cicirello.search.operators.UndoableMutationOperator;
 import org.cicirello.search.operators.permutations.PermutationInitializer;
-import org.cicirello.search.operators.permutations.TwoChangeMutation;
+import org.cicirello.search.operators.permutations.InsertionMutation;
 import org.cicirello.search.problems.OptimizationProblem;
 import org.cicirello.search.sa.SimulatedAnnealing;
 
-public class SimulatedAnnealingTSP {
+public class InsertionMutationTSP {
 
   // number of iterations per simulated annealing run
   private final int ITERATIONS;
@@ -82,10 +82,10 @@ public class SimulatedAnnealingTSP {
   }
 
   // constructor accepts distance matrix and cities from main
-  public SimulatedAnnealingTSP(List<City> cities,
-                               double[][] distanceMatrix,
-                               int iterations,
-                               int runs) {
+  public InsertionMutationTSP(List<City> cities,
+                              double[][] distanceMatrix,
+                              int iterations,
+                              int runs) {
 
     this.cities = cities;
     this.d = distanceMatrix;
@@ -112,8 +112,8 @@ public class SimulatedAnnealingTSP {
     for (int run = 1; run <= RUNS; run++) {
       Initializer<Permutation> init = new PermutationInitializer(n);
 
-      // swap two positions in the tour
-      UndoableMutationOperator<Permutation> move = new TwoChangeMutation();
+      // insert one position into another position in the tour
+      UndoableMutationOperator<Permutation> move = new InsertionMutation();
 
       // track best solution during the run
       ProgressTracker<Permutation> tracker = new ProgressTracker<>();
