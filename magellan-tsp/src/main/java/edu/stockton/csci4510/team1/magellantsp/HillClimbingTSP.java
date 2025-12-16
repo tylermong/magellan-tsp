@@ -16,31 +16,31 @@ import org.cicirello.search.problems.tsp.TSPEdgeDistance;
 public class HillClimbingTSP {
 
   private final ArrayList<Airport> airports;
+  private final double[][] distanceMatrix;
 
-  public HillClimbingTSP(ArrayList<Airport> airports) {
+  public HillClimbingTSP(ArrayList<Airport> airports, double[][] distanceMatrix) {
     this.airports = airports;
+    this.distanceMatrix = distanceMatrix;
   }
 
   public void runExperiment() {
     int n = airports.size();
     System.out.println("Running Hill Climbing TSP on " + n + " airports...\n");
 
-    double[] xs = new double[n]; // longitude
-    double[] ys = new double[n]; // latitude
+    double[] indices = new double[n];
     for (int i = 0; i < n; i++) {
-      xs[i] = airports.get(i).getLongitude();
-      ys[i] = airports.get(i).getLatitude();
+      indices[i] = i;
     }
 
-    TSPEdgeDistance haversine = new TSPEdgeDistance() {
-      @Override
-      public double distance(double x1, double y1, double x2, double y2) {
-        return HaversineDistance.calculateDistance(y1, x1, y2, x2);
-      }
-    };
-    // pulls the haversine distance to be used as the distance function for edge
-    // costs
-    TSP.Double tsp = new TSP.Double(xs, ys, haversine);
+    TSPEdgeDistance matrixLookup =
+        new TSPEdgeDistance() {
+          @Override
+          public double distance(double i, double dummy1, double j, double dummy2) {
+            return distanceMatrix[(int) i][(int) j];
+          }
+        };
+
+    TSP.Double tsp = new TSP.Double(indices, new double[n], matrixLookup);
 
     Configurator.configureRandomGenerator(213);
     PermutationInitializer init = new PermutationInitializer(n);
@@ -52,42 +52,42 @@ public class HillClimbingTSP {
 
     System.out.println(
         "[" + currentStep + "/" + totalSteps + "] Running First Descent / Reversal...");
-    SolutionCostPair<Permutation> fdRev = new FirstDescentHillClimber<>(tsp, new ReversalMutation(), init)
-        .optimize(restarts);
+    SolutionCostPair<Permutation> fdRev =
+        new FirstDescentHillClimber<>(tsp, new ReversalMutation(), init).optimize(restarts);
     printResult("First Descent / Reversal", fdRev);
     currentStep++;
 
     System.out.println(
         "[" + currentStep + "/" + totalSteps + "] Running First Descent / Insertion...");
-    SolutionCostPair<Permutation> fdIns = new FirstDescentHillClimber<>(tsp, new InsertionMutation(), init)
-        .optimize(restarts);
+    SolutionCostPair<Permutation> fdIns =
+        new FirstDescentHillClimber<>(tsp, new InsertionMutation(), init).optimize(restarts);
     printResult("First Descent / Insertion", fdIns);
     currentStep++;
 
     System.out.println("[" + currentStep + "/" + totalSteps + "] Running First Descent / Swap...");
-    SolutionCostPair<Permutation> fdSwap = new FirstDescentHillClimber<>(tsp, new SwapMutation(), init)
-        .optimize(restarts);
+    SolutionCostPair<Permutation> fdSwap =
+        new FirstDescentHillClimber<>(tsp, new SwapMutation(), init).optimize(restarts);
     printResult("First Descent / Swap", fdSwap);
     currentStep++;
 
     System.out.println(
         "[" + currentStep + "/" + totalSteps + "] Running Steepest Descent / Reversal...");
-    SolutionCostPair<Permutation> stRev = new SteepestDescentHillClimber<>(tsp, new ReversalMutation(), init)
-        .optimize(restarts);
+    SolutionCostPair<Permutation> stRev =
+        new SteepestDescentHillClimber<>(tsp, new ReversalMutation(), init).optimize(restarts);
     printResult("Steepest Descent / Reversal", stRev);
     currentStep++;
 
     System.out.println(
         "[" + currentStep + "/" + totalSteps + "] Running Steepest Descent / Insertion...");
-    SolutionCostPair<Permutation> stIns = new SteepestDescentHillClimber<>(tsp, new InsertionMutation(), init)
-        .optimize(restarts);
+    SolutionCostPair<Permutation> stIns =
+        new SteepestDescentHillClimber<>(tsp, new InsertionMutation(), init).optimize(restarts);
     printResult("Steepest Descent / Insertion", stIns);
     currentStep++;
 
     System.out.println(
         "[" + currentStep + "/" + totalSteps + "] Running Steepest Descent / Swap...");
-    SolutionCostPair<Permutation> stSwap = new SteepestDescentHillClimber<>(tsp, new SwapMutation(), init)
-        .optimize(restarts);
+    SolutionCostPair<Permutation> stSwap =
+        new SteepestDescentHillClimber<>(tsp, new SwapMutation(), init).optimize(restarts);
     printResult("Steepest Descent / Swap", stSwap);
   }
 
