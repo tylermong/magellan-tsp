@@ -1,4 +1,4 @@
-package edu.stockton.csci4510.team1.magellantsp;
+package edu.stockton.csci4510.team1.magellantsp.genevo;
 
 import java.util.ArrayList;
 import java.util.Comparator;
