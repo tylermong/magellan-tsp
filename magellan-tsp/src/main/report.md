@@ -16,8 +16,6 @@ Our general methodology for assigning work was to align responsibilities with ea
 
  •	Tyler and Alexis—the most experienced programmers—were designated as the primary code reviewers, ensuring consistency, quality, and correctness across the codebase.
 
- •	Tyler also generated seeded runs for the group, providing consistent baselines that improved the comparability and reliability of our algorithmic evaluations.
-
  •	Alexis, who proposed the initial idea for the project, served as the project lead, guiding design choices, coordinating major tasks, and helping ensure cohesive integration.
 
  •	Tasnim, whose strengths lie in mathematics, was tasked with implementing Haversine Distance, a core component used by all algorithms that required accurate geographic distance computation.
@@ -83,10 +81,8 @@ Implemented with both insertion and swap mutations to compare performance across
 Generational Evolutionary Algorithm (Tasnim):
 Included permutation initialization, elitism, and multiple crossover operators to explore population-based optimization.
 
-6. Seeding Strategy
-To ensure fair comparisons across algorithms, Tyler implemented Repeated Nearest Neighbor (RNN) to generate seed tours. These served as consistent starting points for multiple runs, reducing randomness and improving the interpretability of performance differences.
 
-7. Experimental Procedure
+6. Experimental Procedure
 For each algorithm, we conducted multiple runs to evaluate consistency and robustness. Across these runs we recorded:
 
       •	Best distance found
