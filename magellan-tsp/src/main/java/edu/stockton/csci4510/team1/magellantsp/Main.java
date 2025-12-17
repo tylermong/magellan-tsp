@@ -1,6 +1,8 @@
 package edu.stockton.csci4510.team1.magellantsp;
 
+import edu.stockton.csci4510.team1.magellantsp.crossover.CrossoverTSP;
 import edu.stockton.csci4510.team1.magellantsp.greedy.GreedyTester;
+import edu.stockton.csci4510.team1.magellantsp.hillclimbing.HillClimbingTSP;
 import edu.stockton.csci4510.team1.magellantsp.simulatedannealing.InsertionMutationTSP;
 import edu.stockton.csci4510.team1.magellantsp.simulatedannealing.SimulatedAnnealingTSP;
 import edu.stockton.csci4510.team1.magellantsp.util.Airport;

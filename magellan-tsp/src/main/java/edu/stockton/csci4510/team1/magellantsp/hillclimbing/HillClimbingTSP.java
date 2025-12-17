@@ -1,4 +1,4 @@
-package edu.stockton.csci4510.team1.magellantsp;
+package edu.stockton.csci4510.team1.magellantsp.hillclimbing;
 
 import org.cicirello.permutations.Permutation;
 import org.cicirello.search.Configurator;
