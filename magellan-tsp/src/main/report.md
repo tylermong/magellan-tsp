@@ -28,22 +28,22 @@ It was only after implementing a 3-Opt local search operator that we observed no
 
 Tasnim's implementation of Genetic Evolutionary Computation experiments pointed to Order Crossover (OX) as the clear winner, securing the best route with a total distance of about 1.06 million km. Partially Mapped Crossover (PMX) performed overall well,  while Cycle Crossover (CX) had a harder time, falling 18% behind the top score. We saw consistent convergence across all 20 runs, and it became obvious that mutation was the key factor helping the system avoid getting stuck in local loops (local optima) to find a better final path.
 
- ![Generational Evolutionary Computation Output](magellan-tsp/src/main/outputs/gen-evo-output.jpg)
+ ![Generational Evolutionary Computation Output](outputs/gen-evo-output.jpg)
 
 Michael started by testing an insertion-style mutation on its own to see how well it could solve the TSP:
 
- ![Insertion Mutation Output](magellan-tsp/src/main/outputs/InsertionMutationResults.png)
+ ![Insertion Mutation Output](outputs/InsertionMutationResults.png)
  
 The mutation was able to make reasonable local changes to the tour, but it often got stuck in local minima and stopped improving after a while. Results also varied a lot between runs, which suggested that mutation alone was not reliable for consistently finding good solutions.
 
 We then applied simulated annealing using a two-change mutation operator:
 
- ![Simulated Annealing Output](magellan-tsp/src/main/outputs/SimulatedAnnealingResults.png)
+ ![Simulated Annealing Output](outputs/SimulatedAnnealingResults.png)
 
 This approach produced better and more consistent tour costs across multiple runs. By occasionally accepting worse solutions early on, simulated annealing was able to escape local minima and continue improving the tour, which made it clearly more effective than using insertion-style mutation by itself.
 
 For our greedy hill climbers, implementation using Vincent Cicirello's "Chips-n-Salsa" was chosen to apply both first descent and steepest descent hill climbing. Since this is a reduction problem, trying to get the shortest distance, we will be doing descent compared to ascent. Within these two we will apply 3 different mutation operators to them: swap, insertion, and reversal: 
 
- ![Hill Climbing TSP Output](magellan-tsp/src/main/outputs/HillClimbingTSP-output.png)
+ ![Hill Climbing TSP Output](outputs/HillClimbingTSP-output.png)
 
 Within this output, we can see that while the reversal mutation yielded the lowest tour, the steepest descent approach had proven slightly better than first descent. This output also shows that the swap mutation might not be viable for hill climbing, as the outputs we got are way too large in comparison to that of reversal and insertion mutation application.
