@@ -23,13 +23,12 @@ public class SimulatedAnnealingTSP {
   public static class City {
     public final double latDeg;
     public final double lonDeg;
-  
+
     public City(double latDeg, double lonDeg) {
       this.latDeg = latDeg;
       this.lonDeg = lonDeg;
     }
   }
-  
 
   // store airport data
   private final List<City> cities;
@@ -145,17 +144,12 @@ public class SimulatedAnnealingTSP {
       RunSummary r = summaries.get(rank);
 
       System.out.printf(
-          "#%d  (Run %d)%n" +
-              "  Cost: %.3f km%n" +
-              "  Time: %.3f s%n" +
-              "  Start index: %d%n" +
-              "  End index:   %d%n%n",
-          rank + 1,
-          r.runNumber,
-          r.costKm,
-          r.seconds,
-          r.firstIdx,
-          r.lastIdx);
+          "#%d  (Run %d)%n"
+              + "  Cost: %.3f km%n"
+              + "  Time: %.3f s%n"
+              + "  Start index: %d%n"
+              + "  End index:   %d%n%n",
+          rank + 1, r.runNumber, r.costKm, r.seconds, r.firstIdx, r.lastIdx);
     }
 
     return summaries;
