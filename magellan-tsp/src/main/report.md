@@ -31,30 +31,33 @@ The repository owner, tylermong, set up the project structure on GitHub and prov
 
 
 ## Methodology
-Our approach to solving this global Traveling Salesperson Problem (TSP) combined structured data preparation, accurate geographic distance modeling, and a multitude of evolutionary and local-search algorithms implemented through the Chips-n-Salsa optimization library. The following sections outline the major methodological components of the project.
+Our approach to solving this global Traveling Salesperson Problem (TSP) combined structured data preparation, accurate geographic distance modeling, and a range of evolutionary and local-search algorithms implemented through the Chips-n-Salsa optimization library (Cicirello, 2022). The following sections outline the major methodological components of the project.
+
 1. Problem Representation
-To define our TSP instance, we constructed a CSV file containing one international airport for every country that has one. Each entry included:
 
-      •Airport name
+To define our TSP instance, we constructed a CSV file containing one international airport for every country that has one. This dataset was derived from publicly available airport data provided by OurAirports (OurAirports, n.d.). Each entry included:
 
-      •Country
+- Airport name
 
-      •Longitude (positive for East, negative for West)
+- Country
 
-      •Latitudse (positive for North, negative for South)
+- Longitude (positive for East, negative for West)
 
-This ensured global coverage and provided a consistent dataset for all algorithmic implementations. Each airport was represented in Java by an Airport class, which stored its coordinates for efficient distance lookup.
+- Latitude (positive for North, negative for South)
+
+This ensured global coverage and provided a consistent dataset for all algorithmic implementations. Each airport was represented in Java by an Airport class, which stored its geographic coordinates for efficient distance lookup and reuse across all algorithms.
 
 3. Distance Calculation (Haversine Formula)
-Because the Earth is spherical, standard Euclidean distance would produce inaccurate results across long distances. To address this, we used the Haversine Distance formula, implemented by Tasnim, to compute the great-circle distance between any two airports.
-This provided each algorithm with realistic air travel distances, strengthening the real world applicability of the results.
+
+Because the Earth is spherical, standard Euclidean distance produces inaccurate results when applied to long-distance, global-scale problems. To address this, we used the Haversine distance formula, implemented by Tasnim, to compute the great-circle distance between any two airports. This approach provides a more accurate measure of real-world air travel distance based on latitude and longitude coordinates, improving the realism and applicability of the results.
 
 4. Tour Representation and Fitness Evaluation
-Each potential solution was represented as a permutation of airport indices, indicating the order in which airports are visited. The fitness function for all algorithms was the total Haversine distance of the tour, computed by summing pairwise distances between consecutive airports and returning to the starting point.
-Lower total distance were our indicater for better solution.
+
+Each potential solution was represented as a permutation of airport indices, indicating the order in which airports are visited. The fitness function for all algorithms was defined as the total Haversine distance of the tour, computed by summing the pairwise distances between consecutive airports and including the return trip to the starting airport. Lower total distances were used as the primary indicator of better solutions.
 
 5. Evolutionary Algorithms and Operators
-Each member implemented at least one evolutionary operator or search strategy, allowing the group to compare multiple approaches under a unified framework.
+
+Each team member implemented at least one evolutionary operator or search strategy, allowing the group to compare multiple approaches under a unified optimization framework provided by the Chips-n-Salsa library (Cicirello, 2022). This structure enabled consistent evaluation of algorithm performance while highlighting the strengths and weaknesses of different evolutionary and local-search techniques when applied to the same global TSP instance.
 
 #### Crossover Operators (Alexis):
 •	Order Crossover (OX)
@@ -132,5 +135,5 @@ Within this output, we can see that while the reversal mutation yielded the lowe
 
 Cicirello, Vincent A. (2022). Chips-n-Salsa: A Java library for optimization and search algorithms [Computer software]. https://chips-n-salsa.cicirello.org/
 
-Megginson, David. OurAirports. https://ourairports.com/
+Megginson, David. (n.d.). OurAirports. https://ourairports.com/
 
