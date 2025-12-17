@@ -1,8 +1,8 @@
 package edu.stockton.csci4510.team1.magellantsp;
 
 import edu.stockton.csci4510.team1.magellantsp.greedy.GreedyTester;
-import edu.stockton.csci4510.team1.magellantsp.simulatedannealing.SimulatedAnnealingTSP;
 import edu.stockton.csci4510.team1.magellantsp.simulatedannealing.InsertionMutationTSP;
+import edu.stockton.csci4510.team1.magellantsp.simulatedannealing.SimulatedAnnealingTSP;
 import java.io.*;
 import java.util.*;
 
@@ -26,33 +26,28 @@ public class Main {
     hc.runExperiment();
   }
 
-
-  public static void SimulatedAnnealingTSP(ArrayList<Airport> airports,
-                                           double[][] distanceMatrix) {
+  public static void SimulatedAnnealingTSP(ArrayList<Airport> airports, double[][] distanceMatrix) {
 
     List<SimulatedAnnealingTSP.City> cities = new ArrayList<>();
     for (Airport a : airports) {
-      cities.add(new SimulatedAnnealingTSP.City(
-          a.getName(), a.getLatitude(), a.getLongitude()));
+      cities.add(
+          new SimulatedAnnealingTSP.City(a.getAirportName(), a.getLatitude(), a.getLongitude()));
     }
 
-    SimulatedAnnealingTSP sa =
-        new SimulatedAnnealingTSP(cities, distanceMatrix, 200_000, 5);
+    SimulatedAnnealingTSP sa = new SimulatedAnnealingTSP(cities, distanceMatrix, 200_000, 5);
 
     sa.runAll();
   }
 
-  public static void InsertionMutationTSP(ArrayList<Airport> airports,
-                                          double[][] distanceMatrix) {
+  public static void InsertionMutationTSP(ArrayList<Airport> airports, double[][] distanceMatrix) {
 
     List<InsertionMutationTSP.City> cities = new ArrayList<>();
     for (Airport a : airports) {
-      cities.add(new InsertionMutationTSP.City(
-          a.getName(), a.getLatitude(), a.getLongitude()));
+      cities.add(
+          new InsertionMutationTSP.City(a.getAirportName(), a.getLatitude(), a.getLongitude()));
     }
 
-    InsertionMutationTSP im =
-        new InsertionMutationTSP(cities, distanceMatrix, 200_000, 5);
+    InsertionMutationTSP im = new InsertionMutationTSP(cities, distanceMatrix, 200_000, 5);
 
     im.runAll();
   }
