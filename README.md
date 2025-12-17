@@ -25,7 +25,7 @@ Magellan-TSP is a Java-based simulation of the Traveling Salesperson Problem (TS
 ### Build and Run
 1.  Clone the repository:
     ```bash
-    git clone <repository-url>
+    git clone https://github.com/tylermong/magellan-tsp
     cd magellan-tsp
     ```
 2.  Build the project using Maven:
