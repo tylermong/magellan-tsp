@@ -1,4 +1,4 @@
-package edu.stockton.csci4510.team1.magellantsp;
+package edu.stockton.csci4510.team1.magellantsp.hillclimbing;
 
 import org.cicirello.permutations.Permutation;
 import org.cicirello.search.Configurator;
@@ -40,7 +40,7 @@ public class HillClimbingTSP {
 
     Configurator.configureRandomGenerator(213);
     PermutationInitializer init = new PermutationInitializer(n);
-    int restarts = 1; // TODO: anything but 1 was taking too long locally
+    int restarts = 10;
 
     // fd = first descent, st steepest descent
     int totalSteps = 6;
