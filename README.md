@@ -37,7 +37,7 @@ In terms of coding contributions every group member was given at the least one a
 
 Alexis : Order Crossover. Partially Matched Crossover, Cycle Crosssover. Also added a 3-opt local search to optimize and show how much of a difference it makes in finding a better run. In addition to that he created the airport csv and airport class.
 
-Tasnim : Haversine Distance implementation that was used in each member's algorithm classes. Also did a generational evolutionary computation using permutation, elitism and Cycle Crossover, Partially Matched Crossover, and Cycle Crossover.
+Tasnim : Haversine Distance implementation that was used in each member's algorithm classes. Also did a generational evolutionary computation using permutation, elitism and Order Crossover, Partially Matched Crossover, and Cycle Crossover.
 
 Owen : Steepest and first hill climbing, including swap insertion and reversal mutations for both of them.
 
