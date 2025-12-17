@@ -15,13 +15,11 @@ public class Main {
   public static void main(String[] args) throws IOException {
     ArrayList<Airport> airports = AirportLoader.loadAirports("international_airports.csv");
     double[][] distanceMatrix = HaversineDistance.buildDistanceMatrix(airports);
+    localSearchTSP(airports, distanceMatrix);
     SimulatedAnnealingTSP(airports, distanceMatrix);
     InsertionMutationTSP(airports, distanceMatrix);
-    localSearchTSP(airports, distanceMatrix);
     crossoverTSP(airports, distanceMatrix);
     greedyTSP(airports, distanceMatrix);
-    SimulatedAnnealingTSP(airports, distanceMatrix);
-    InsertionMutationTSP(airports, distanceMatrix);
   }
 
   public static void localSearchTSP(ArrayList<Airport> airports, double[][] distanceMatrix) {
@@ -37,7 +35,6 @@ public class Main {
     }
 
     SimulatedAnnealingTSP sa = new SimulatedAnnealingTSP(cities, distanceMatrix, 200_000, 5);
-
     sa.runAll();
   }
 
@@ -49,7 +46,6 @@ public class Main {
     }
 
     InsertionMutationTSP im = new InsertionMutationTSP(cities, distanceMatrix, 200_000, 5);
-
     im.runAll();
   }
 
