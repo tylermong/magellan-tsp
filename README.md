@@ -55,6 +55,7 @@ The source code is organized into the following packages under `edu.stockton.csc
 
 -   **`magellantsp`**: Contains the `Main` class which serves as the entry point.
 -   **`crossover`**: Implementation of genetic algorithm crossover operators (Order, PMX, Cycle).
+-   **`genevo`**: Generational Evolutionary Computation implementation.
 -   **`greedy`**: Repeated Nearest Neighbor implementation.
 -   **`hillclimbing`**: Hill climbing algorithms (Steepest/First Descent).
 -   **`simulatedannealing`**: Simulated annealing and specific mutation strategies.
@@ -72,7 +73,7 @@ In terms of coding contributions every group member was given at the least one a
 -   **Tasnim**: Haversine Distance implementation that was used in each member's algorithm classes. Also did a generational evolutionary computation using permutation, elitism and Order Crossover, Partially Matched Crossover, and Cycle Crossover.
 -   **Owen**: Steepest and first hill climbing, including swap insertion and reversal mutations for both of them.
 -   **Michael**: Implemented Simulated Annealing, comparing insertion vs swap mutations across multiple randomized runs and reported best-tour rankings and runtime statistics.
--   **Tyler**: Created and managed the github for the entire project. Created the framework for the project and implemented RepeatedNearestNeighbor.
+-   **Tyler**: Created and managed the GitHub for the entire project. Created the framework for the project and implemented RepeatedNearestNeighbor.
 
 ## License
 
