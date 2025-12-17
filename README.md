@@ -60,10 +60,6 @@ The source code is organized into the following packages under `edu.stockton.csc
 -   **`simulatedannealing`**: Simulated annealing and specific mutation strategies.
 -   **`util`**: Utility classes including `Airport` data structure, `AirportLoader` for parsing CSVs, and `HaversineDistance` for calculation.
 
-## License
-
-This project is licensed under the [GNU General Public License v3.0](LICENSE).
-
 ## Team Workload Allocation
 
 The general methodology of assigning work to group members was to assign roles to members according to their strengths.
@@ -77,3 +73,7 @@ In terms of coding contributions every group member was given at the least one a
 -   **Owen**: Steepest and first hill climbing, including swap insertion and reversal mutations for both of them.
 -   **Michael**: Implemented Simulated Annealing, comparing insertion vs swap mutations across multiple randomized runs and reported best-tour rankings and runtime statistics.
 -   **Tyler**: Created and managed the github for the entire project. Created the framework for the project and implemented RepeatedNearestNeighbor which generated a seed for use in everyone else's code to make the runs more impactful and connected.
+
+## License
+
+This project is licensed under the [GNU General Public License v3.0](LICENSE).
