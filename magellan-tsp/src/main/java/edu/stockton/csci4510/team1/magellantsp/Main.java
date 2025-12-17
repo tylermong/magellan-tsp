@@ -1,8 +1,8 @@
 package edu.stockton.csci4510.team1.magellantsp;
 
 import edu.stockton.csci4510.team1.magellantsp.greedy.GreedyTester;
-import edu.stockton.csci4510.simulatedAnnealing.SimulatedAnnealingTSP;
-import edu.stockton.csci4510.simulatedAnnealing.InsertionMutationTSP;
+import edu.stockton.csci4510.team1.magellantsp.simulatedannealing.SimulatedAnnealingTSP;
+import edu.stockton.csci4510.team1.magellantsp.simulatedannealing.InsertionMutationTSP;
 import java.io.*;
 import java.util.*;
 

@@ -1,4 +1,4 @@
-package edu.stockton.csci4510.simulatedAnnealing;
+package edu.stockton.csci4510.team1.magellantsp.simulatedannealing;
 
 import java.util.*;
 
