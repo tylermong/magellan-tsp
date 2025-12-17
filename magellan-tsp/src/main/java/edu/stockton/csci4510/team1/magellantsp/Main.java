@@ -16,8 +16,8 @@ public class Main {
     ArrayList<Airport> airports = AirportLoader.loadAirports("international_airports.csv");
     double[][] distanceMatrix = HaversineDistance.buildDistanceMatrix(airports);
     localSearchTSP(airports, distanceMatrix);
-    SimulatedAnnealingTSP(airports, distanceMatrix);
-    InsertionMutationTSP(airports, distanceMatrix);
+    simulatedAnnealingTSP(airports, distanceMatrix);
+    insertionMutationTSP(airports, distanceMatrix);
     crossoverTSP(airports, distanceMatrix);
     greedyTSP(airports, distanceMatrix);
   }
@@ -27,7 +27,7 @@ public class Main {
     hc.runExperiment();
   }
 
-  public static void SimulatedAnnealingTSP(ArrayList<Airport> airports, double[][] distanceMatrix) {
+  public static void simulatedAnnealingTSP(ArrayList<Airport> airports, double[][] distanceMatrix) {
     List<SimulatedAnnealingTSP.City> cities = new ArrayList<>();
     for (Airport a : airports) {
       cities.add(
@@ -38,7 +38,7 @@ public class Main {
     sa.runAll();
   }
 
-  public static void InsertionMutationTSP(ArrayList<Airport> airports, double[][] distanceMatrix) {
+  public static void insertionMutationTSP(ArrayList<Airport> airports, double[][] distanceMatrix) {
     List<InsertionMutationTSP.City> cities = new ArrayList<>();
     for (Airport a : airports) {
       cities.add(
