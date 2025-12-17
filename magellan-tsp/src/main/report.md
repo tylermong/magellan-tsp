@@ -45,15 +45,15 @@ To define our TSP instance, we constructed a CSV file containing one internation
 
 This ensured global coverage and provided a consistent dataset for all algorithmic implementations. Each airport was represented in Java by an Airport class, which stored its geographic coordinates for efficient distance lookup and reuse across all algorithms.
 
-3. Distance Calculation (Haversine Formula)
+2. Distance Calculation (Haversine Formula)
 
 Because the Earth is spherical, standard Euclidean distance produces inaccurate results when applied to long-distance, global-scale problems. To address this, we used the Haversine distance formula, implemented by Tasnim, to compute the great-circle distance between any two airports. This approach provides a more accurate measure of real-world air travel distance based on latitude and longitude coordinates, improving the realism and applicability of the results.
 
-4. Tour Representation and Fitness Evaluation
+3. Tour Representation and Fitness Evaluation
 
 Each potential solution was represented as a permutation of airport indices, indicating the order in which airports are visited. The fitness function for all algorithms was defined as the total Haversine distance of the tour, computed by summing the pairwise distances between consecutive airports and including the return trip to the starting airport. Lower total distances were used as the primary indicator of better solutions.
 
-5. Evolutionary Algorithms and Operators
+4. Evolutionary Algorithms and Operators
 
 Each team member implemented at least one evolutionary operator or search strategy, allowing the group to compare multiple approaches under a unified optimization framework provided by the Chips-n-Salsa library (Cicirello, 2022). This structure enabled consistent evaluation of algorithm performance while highlighting the strengths and weaknesses of different evolutionary and local-search techniques when applied to the same global TSP instance.
 
@@ -82,7 +82,7 @@ Generational Evolutionary Algorithm (Tasnim):
 Included permutation initialization, elitism, and multiple crossover operators to explore population-based optimization.
 
 
-6. Experimental Procedure
+5. Experimental Procedure
 For each algorithm, we conducted multiple runs to evaluate consistency and robustness. Across these runs we recorded:
 
       •	Best distance found
