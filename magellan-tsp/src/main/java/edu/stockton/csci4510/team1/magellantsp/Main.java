@@ -55,6 +55,11 @@ public class Main {
     crossover.runExperiment();
   }
 
+  public static void runGenEvo(List<Airport> airports, double[][] distanceMatrix) {
+    GenEvoComputation evo = new GenEvoComputation(new ArrayList<>(airports), distanceMatrix);
+    evo.runExperiment();
+  }
+
   public static void greedyTSP(List<Airport> airports, double[][] distanceMatrix) {
     GreedyTester tester = new GreedyTester(airports, distanceMatrix);
     tester.runTest();
