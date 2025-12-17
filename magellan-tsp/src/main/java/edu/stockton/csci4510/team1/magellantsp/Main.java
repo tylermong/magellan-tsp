@@ -21,6 +21,7 @@ public class Main {
     simulatedAnnealingTSP(airports, distanceMatrix);
     insertionMutationTSP(airports, distanceMatrix);
     crossoverTSP(airports, distanceMatrix);
+    runGenEvo(airports, distanceMatrix);
     greedyTSP(airports, distanceMatrix);
   }
 
