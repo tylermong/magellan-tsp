@@ -23,9 +23,9 @@ public class GenEvoComputation {
   private static final int ELITES = 2;
   private static final int RUNS = 20;
 
-  public GenEvoComputation(ArrayList<Airport> airports) {
+  public GenEvoComputation(ArrayList<Airport> airports, double[][] distanceMatrix) {
     this.airports = airports;
-    this.problem = new TSPProblem(airports);
+    this.problem = new TSPProblem(distanceMatrix);
   }
 
   private double tourCost(Permutation tour) {

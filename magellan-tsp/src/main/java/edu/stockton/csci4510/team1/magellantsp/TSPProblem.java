@@ -1,6 +1,5 @@
 package edu.stockton.csci4510.team1.magellantsp;
 
-import java.util.ArrayList;
 import org.cicirello.permutations.Permutation;
 import org.cicirello.search.evo.FitnessFunction;
 import org.cicirello.search.problems.Problem;
@@ -8,8 +7,8 @@ import org.cicirello.search.problems.Problem;
 public class TSPProblem implements FitnessFunction.Double<Permutation> {
   private double[][] distMatrix;
 
-  public TSPProblem(ArrayList<Airport> airports) {
-    this.distMatrix = HaversineDistance.buildDistanceMatrix(airports);
+  public TSPProblem(double[][] distMatrix) {
+    this.distMatrix = distMatrix;
   }
 
   @Override

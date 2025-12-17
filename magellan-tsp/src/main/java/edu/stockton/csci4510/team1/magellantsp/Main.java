@@ -12,7 +12,7 @@ public class Main {
     double[][] dMatrix = HaversineDistance.buildDistanceMatrix(airports);
     localSearchTSP(airports, dMatrix);
     crossoverTSP(airports, dMatrix);
-    runGenEvo(airports);
+    runGenEvo(airports, dMatrix);
     greedyTSP(airports, dMatrix);
   }
 
@@ -35,13 +35,13 @@ public class Main {
     crossover.runExperiment();
   }
 
+  public static void runGenEvo(List<Airport> airports, double[][] distanceMatrix) {
+    GenEvoComputation evo = new GenEvoComputation(new ArrayList<>(airports), distanceMatrix);
+    evo.runExperiment();
+  }
+
   public static void greedyTSP(List<Airport> airports, double[][] distanceMatrix) {
     GreedyTester tester = new GreedyTester(airports, distanceMatrix);
     tester.runTest();
-  }
-
-  public static void runGenEvo(List<Airport> airports) {
-    GenEvoComputation evo = new GenEvoComputation(new ArrayList<>(airports));
-    evo.runExperiment();
   }
 }
