@@ -30,7 +30,6 @@ public class Main {
   }
 
   public static void SimulatedAnnealingTSP(ArrayList<Airport> airports, double[][] distanceMatrix) {
-
     List<SimulatedAnnealingTSP.City> cities = new ArrayList<>();
     for (Airport a : airports) {
       cities.add(
@@ -43,7 +42,6 @@ public class Main {
   }
 
   public static void InsertionMutationTSP(ArrayList<Airport> airports, double[][] distanceMatrix) {
-
     List<InsertionMutationTSP.City> cities = new ArrayList<>();
     for (Airport a : airports) {
       cities.add(
@@ -56,7 +54,6 @@ public class Main {
   }
 
   public static void crossoverTSP(List<Airport> airports, double[][] distanceMatrix) {
-    // add code here
     CrossoverTSP crossover = new CrossoverTSP(new ArrayList<>(airports), distanceMatrix);
     crossover.runExperiment();
   }
