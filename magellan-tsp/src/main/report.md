@@ -127,13 +127,37 @@ For our greedy hill climbers, implementation using Vincent Cicirello's "Chips-n-
 
 Within this output, we can see that while the reversal mutation yielded the lowest tour, the steepest descent approach had proven slightly better than first descent. This output also shows that the swap mutation might not be viable for hill climbing, as the outputs we got are way too large in comparison to that of reversal and insertion mutation application.
 
+#### Best Run Summary Across Algorithms
+
+To make our comparison clearer, below we identified the single best tour produced by each major method from the recorded outputs:
+
+Repeated Nearest Neighbor (RNN): best tour distance = 199,364.81 km
+
+Hill Climbing: best tour distance = 186,789.00 km (Steepest Descent + Reversal)
+
+Simulated Annealing: best tour distance = 218,094.285 km
+
+Insertion Mutation (standalone): best tour distance = 301,203.799 km
+
+Crossover methods :
+
+Best pure crossover result: OX = 990,810.484 km
+
+Best crossover + local improvement: OX + 3-Opt = 747,107.571 km
+
+Generational Evolutionary Computation:
+
+Best operator result: OX = 1,059,833.420 km
+
+Overall, the best tour found in the entire project from all of our runs was 186,789.00 km from Steepest Descent Hill Climbing using Reversal mutation, which slightly outperformed the greedy baseline (RNN) and clearly outperformed our mutation-only and crossover-only approaches.
+
 ## Conclusion
 
-This project showed that evolutionary computation is a practical and effective way to approach a global Traveling Salesperson Problem; one that involves visiting an airport in every country and minimizing the total travel distance. By using real geographic data and the Haversine formula, we grounded our algorithms in realities of international travel, giving our results meaningful real world relevance.
+This project showed that evolutionary computation and local-search methods can meaningfully improve solutions to a global Traveling Salesperson Problem using real airport locations and Haversine distance. Across our experiments, we saw that different methods had very different strengths depending on how well they balanced exploration (trying new structures) and exploitation (refining good routes).
 
-Across all experiments, we found that while crossover and mutation operators create valuable diversity, they are not enough on their own to consistently produce strong solutions. Simulated annealing stood out for its ability to escape local minima by occasionally accepting worse solutions early in a search leading to more reliable results compared to mutation alone.
+When comparing best outcomes, Steepest Descent Hill Climbing with Reversal mutation produced the best tour overall (186,789.00 km), slightly beating our greedy baseline (RNN at 199,364.81 km). Simulated annealing performed better than using insertion mutation by itself in our runs (best 218,094.285 km vs 301,203.799 km), showing that controlled randomness can help avoid stagnation. For evolutionary crossover operators, results improved substantially once we added 3-Opt, but even the best crossover + 3-Opt outcome remained far above the best local-search results, suggesting that our crossover setup likely needed stronger selection/elitism or better integration with local search to compete on this instance.
 
-Overall, our findings reinforce that hybrid approaches, those that combine evolutionary operators with local optimization, are especially powerful for solving large, complex problems like TSP. Beyond the results obtained, this project strengthened our ability to work effectively within a team, solve problems collaboratively and understand how optimization methods can be applied to real world scenarios.
+Overall, our results reinforce that for this dataset and implementation, strong local search (especially steepest descent with the right neighborhood operator) was the most effective approach, and hybridizing evolutionary methods with local refinement is essential if we want population-based approaches to reach the same quality.
 
 
 ## References
