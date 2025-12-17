@@ -52,5 +52,5 @@ Within this output, we can see that while the reversal mutation yielded the lowe
 
 Cicirello, V. A. (2022). Chips-n-Salsa: A Java library for optimization and search algorithms [Computer software]. https://chips-n-salsa.cicirello.org/
 
-OurAirports. https://ourairports.com/
+David Megginson. OurAirports. https://ourairports.com/
 
