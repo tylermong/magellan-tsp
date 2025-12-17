@@ -1,8 +1,13 @@
 package edu.stockton.csci4510.team1.magellantsp;
 
+import edu.stockton.csci4510.team1.magellantsp.crossover.CrossoverTSP;
 import edu.stockton.csci4510.team1.magellantsp.greedy.GreedyTester;
-import edu.stockton.csci4510.simulatedAnnealing.SimulatedAnnealingTSP;
-import edu.stockton.csci4510.simulatedAnnealing.InsertionMutationTSP;
+import edu.stockton.csci4510.team1.magellantsp.hillclimbing.HillClimbingTSP;
+import edu.stockton.csci4510.team1.magellantsp.simulatedannealing.InsertionMutationTSP;
+import edu.stockton.csci4510.team1.magellantsp.simulatedannealing.SimulatedAnnealingTSP;
+import edu.stockton.csci4510.team1.magellantsp.util.Airport;
+import edu.stockton.csci4510.team1.magellantsp.util.AirportLoader;
+import edu.stockton.csci4510.team1.magellantsp.util.HaversineDistance;
 import java.io.*;
 import java.util.*;
 
@@ -12,13 +17,11 @@ public class Main {
   public static void main(String[] args) throws IOException {
     ArrayList<Airport> airports = AirportLoader.loadAirports("international_airports.csv");
     double[][] distanceMatrix = HaversineDistance.buildDistanceMatrix(airports);
-    SimulatedAnnealingTSP(airports, distanceMatrix);
-    InsertionMutationTSP(airports, distanceMatrix);
     localSearchTSP(airports, distanceMatrix);
+    simulatedAnnealingTSP(airports, distanceMatrix);
+    insertionMutationTSP(airports, distanceMatrix);
     crossoverTSP(airports, distanceMatrix);
     greedyTSP(airports, distanceMatrix);
-    SimulatedAnnealingTSP(airports, distanceMatrix);
-    InsertionMutationTSP(airports, distanceMatrix);
   }
 
   public static void localSearchTSP(ArrayList<Airport> airports, double[][] distanceMatrix) {
@@ -26,40 +29,28 @@ public class Main {
     hc.runExperiment();
   }
 
-
-  public static void SimulatedAnnealingTSP(ArrayList<Airport> airports,
-                                           double[][] distanceMatrix) {
-
+  public static void simulatedAnnealingTSP(ArrayList<Airport> airports, double[][] distanceMatrix) {
     List<SimulatedAnnealingTSP.City> cities = new ArrayList<>();
 
     for (Airport a : airports) {
-      cities.add(new SimulatedAnnealingTSP.City(
-          a.getLatitude(), a.getLongitude()));
+      cities.add(new SimulatedAnnealingTSP.City(a.getLatitude(), a.getLongitude()));
     }
 
-    SimulatedAnnealingTSP sa =
-        new SimulatedAnnealingTSP(cities, distanceMatrix, 200_000, 5);
-
+    SimulatedAnnealingTSP sa = new SimulatedAnnealingTSP(cities, distanceMatrix, 200_000, 5);
     sa.runAll();
   }
 
-  public static void InsertionMutationTSP(ArrayList<Airport> airports,
-                                          double[][] distanceMatrix) {
-
+  public static void insertionMutationTSP(ArrayList<Airport> airports, double[][] distanceMatrix) {
     List<InsertionMutationTSP.City> cities = new ArrayList<>();
     for (Airport a : airports) {
-      cities.add(new InsertionMutationTSP.City(
-          a.getLatitude(), a.getLongitude()));
+      cities.add(new InsertionMutationTSP.City(a.getLatitude(), a.getLongitude()));
     }
 
-    InsertionMutationTSP im =
-        new InsertionMutationTSP(cities, distanceMatrix, 200_000, 5);
-
+    InsertionMutationTSP im = new InsertionMutationTSP(cities, distanceMatrix, 200_000, 5);
     im.runAll();
   }
 
   public static void crossoverTSP(List<Airport> airports, double[][] distanceMatrix) {
-    // add code here
     CrossoverTSP crossover = new CrossoverTSP(new ArrayList<>(airports), distanceMatrix);
     crossover.runExperiment();
   }

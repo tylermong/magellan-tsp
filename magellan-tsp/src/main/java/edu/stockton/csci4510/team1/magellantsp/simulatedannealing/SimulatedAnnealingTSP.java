@@ -1,18 +1,17 @@
-package edu.stockton.csci4510.simulatedAnnealing;
+package edu.stockton.csci4510.team1.magellantsp.simulatedannealing;
 
 import java.util.*;
-
 import org.cicirello.permutations.Permutation;
 import org.cicirello.search.ProgressTracker;
 import org.cicirello.search.SolutionCostPair;
 import org.cicirello.search.operators.Initializer;
 import org.cicirello.search.operators.UndoableMutationOperator;
 import org.cicirello.search.operators.permutations.PermutationInitializer;
-import org.cicirello.search.operators.permutations.InsertionMutation;
+import org.cicirello.search.operators.permutations.TwoChangeMutation;
 import org.cicirello.search.problems.OptimizationProblem;
 import org.cicirello.search.sa.SimulatedAnnealing;
 
-public class InsertionMutationTSP {
+public class SimulatedAnnealingTSP {
 
   // number of iterations per simulated annealing run
   private final int ITERATIONS;
@@ -20,16 +19,16 @@ public class InsertionMutationTSP {
   // number of independent runs
   private final int RUNS;
 
+  // container for airport data
   public static class City {
     public final double latDeg;
     public final double lonDeg;
-  
+
     public City(double latDeg, double lonDeg) {
       this.latDeg = latDeg;
       this.lonDeg = lonDeg;
     }
   }
-  
 
   // store airport data
   private final List<City> cities;
@@ -69,8 +68,7 @@ public class InsertionMutationTSP {
     final int firstIdx;
     final int lastIdx;
 
-    RunSummary(int runNumber, double costKm, double seconds,
-               int firstIdx, int lastIdx) {
+    RunSummary(int runNumber, double costKm, double seconds, int firstIdx, int lastIdx) {
       this.runNumber = runNumber;
       this.costKm = costKm;
       this.seconds = seconds;
@@ -79,11 +77,9 @@ public class InsertionMutationTSP {
     }
   }
 
-  // constructor accepts distance matrix and cities from main
-  public InsertionMutationTSP(List<City> cities,
-                              double[][] distanceMatrix,
-                              int iterations,
-                              int runs) {
+  // constructor expects airport list and distance matrix from main
+  public SimulatedAnnealingTSP(
+      List<City> cities, double[][] distanceMatrix, int iterations, int runs) {
 
     this.cities = cities;
     this.d = distanceMatrix;
@@ -110,22 +106,20 @@ public class InsertionMutationTSP {
     for (int run = 1; run <= RUNS; run++) {
       Initializer<Permutation> init = new PermutationInitializer(n);
 
-      // insert one position into another position in the tour
-      UndoableMutationOperator<Permutation> move = new InsertionMutation();
+      // swap two positions in the tour
+      UndoableMutationOperator<Permutation> move = new TwoChangeMutation();
 
       // track best solution during the run
       ProgressTracker<Permutation> tracker = new ProgressTracker<>();
 
-      SimulatedAnnealing<Permutation> sa =
-          new SimulatedAnnealing<>(problem, move, init, tracker);
+      SimulatedAnnealing<Permutation> sa = new SimulatedAnnealing<>(problem, move, init, tracker);
 
       // time this run
       long startNano = System.nanoTime();
       SolutionCostPair<Permutation> best = sa.optimize(ITERATIONS);
       long endNano = System.nanoTime();
 
-      double elapsedSeconds =
-          (endNano - startNano) / 1_000_000_000.0;
+      double elapsedSeconds = (endNano - startNano) / 1_000_000_000.0;
 
       double bestCost = best.getCostDouble();
       Permutation bestTour = best.getSolution();
@@ -133,13 +127,10 @@ public class InsertionMutationTSP {
       int firstIdx = bestTour.get(0);
       int lastIdx = bestTour.get(n - 1);
 
-      summaries.add(
-          new RunSummary(run, bestCost, elapsedSeconds,
-              firstIdx, lastIdx));
+      summaries.add(new RunSummary(run, bestCost, elapsedSeconds, firstIdx, lastIdx));
 
       System.out.printf(
-          "Run %d finished: cost = %.3f km, time = %.3f s%n",
-          run, bestCost, elapsedSeconds);
+          "Run %d finished: cost = %.3f km, time = %.3f s%n", run, bestCost, elapsedSeconds);
     }
 
     // sort runs by tour cost
@@ -153,17 +144,12 @@ public class InsertionMutationTSP {
       RunSummary r = summaries.get(rank);
 
       System.out.printf(
-          "#%d  (Run %d)%n" +
-              "  Cost: %.3f km%n" +
-              "  Time: %.3f s%n" +
-              "  Start: (index %d)%n" +
-              "  End:   (index %d)%n%n",
-          rank + 1,
-          r.runNumber,
-          r.costKm,
-          r.seconds,
-          r.firstIdx,
-          r.lastIdx);
+          "#%d  (Run %d)%n"
+              + "  Cost: %.3f km%n"
+              + "  Time: %.3f s%n"
+              + "  Start index: %d%n"
+              + "  End index:   %d%n%n",
+          rank + 1, r.runNumber, r.costKm, r.seconds, r.firstIdx, r.lastIdx);
     }
 
     return summaries;
