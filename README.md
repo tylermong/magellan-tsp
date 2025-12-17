@@ -28,11 +28,13 @@ Magellan-TSP is a Java-based simulation of the Traveling Salesperson Problem (TS
     git clone https://github.com/tylermong/magellan-tsp
     cd magellan-tsp
     ```
+
 2.  Build the project using Maven:
     ```bash
     mvn clean package
     ```
     This will compile the code and generate an executable JAR file in the `target` directory.
+
 3.  Run the project:
     ```bash
     java -jar target/magellan-tsp-1.0-SNAPSHOT.jar
