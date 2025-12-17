@@ -107,28 +107,34 @@ The results were then compiled and compared to visualize algorithm performance a
 
 
 ## Results
+
+#### Crossover
 With regard to crossover operators, we quickly found that while they adequately randomized the population to create diverse generations, we lacked an effective method for preserving high-quality solutions. Tournament selection’s inherent randomness appeared to cause the loss of several promising parents that may have contributed to better future generations, and our results reflected this issue. Even Order Crossover, our strongest performer among the three tested (Order, Partially Matched, and Cycle), produced outcomes that fell short when compared to other genetic algorithm approaches we explored.
 
  ![Crossover TSP Output](outputs/CrossoverTSP-output.png)
  
 It was only after implementing a 3-Opt local search operator that we observed noticeably improved and more consistent results. Even then, our findings suggest that although crossover effectively generates variation and helps maintain population diversity, it is insufficient on its own when attempting to optimize and reach high-quality solutions for this problem.
 
+#### Generational Computation
 Tasnim's implementation of Genetic Evolutionary Computation experiments pointed to Order Crossover (OX) as the clear winner, securing the best route with a total distance of about 1.06 million km. Partially Mapped Crossover (PMX) performed overall well,  while Cycle Crossover (CX) had a harder time, falling 18% behind the top score. We saw consistent convergence across all 20 runs, and it became obvious that mutation was the key factor helping the system avoid getting stuck in local loops (local optima) to find a better final path.
 
  ![Generational Evolutionary Computation Output](outputs/gen-evo-output.jpg)
 
+#### Mutators
 Michael started by testing an insertion-style mutation on its own to see how well it could solve the TSP:
 
  ![Insertion Mutation Output](outputs/InsertionMutationResults.png)
  
 The mutation was able to make reasonable local changes to the tour, but it often got stuck in local minima and stopped improving after a while. Results also varied a lot between runs, which suggested that mutation alone was not reliable for consistently finding good solutions.
 
+#### Simulated Annealing
 We then applied simulated annealing using a two-change mutation operator:
 
  ![Simulated Annealing Output](outputs/SimulatedAnnealingResults.png)
 
 This approach produced better and more consistent tour costs across multiple runs. By occasionally accepting worse solutions early on, simulated annealing was able to escape local minima and continue improving the tour, which made it clearly more effective than using insertion-style mutation by itself.
 
+#### Greedy Algorithms
 For our greedy hill climbers, implementation using Vincent Cicirello's "Chips-n-Salsa" was chosen to apply both first descent and steepest descent hill climbing. Since this is a reduction problem, trying to get the shortest distance, we will be doing descent compared to ascent. Within these two we will apply 3 different mutation operators to them: swap, insertion, and reversal: 
 
  ![Hill Climbing TSP Output](outputs/HillClimbingTSP-output.png)
