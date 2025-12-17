@@ -50,7 +50,7 @@ Within this output, we can see that while the reversal mutation yielded the lowe
 
 ##References
 
-Cicirello, V. A. (2022). Chips-n-Salsa: A Java library for optimization and search algorithms [Computer software]. https://chips-n-salsa.cicirello.org/
+Cicirello, Vincent A. (2022). Chips-n-Salsa: A Java library for optimization and search algorithms [Computer software]. https://chips-n-salsa.cicirello.org/
 
-David Megginson. OurAirports. https://ourairports.com/
+Megginson, David. OurAirports. https://ourairports.com/
 
