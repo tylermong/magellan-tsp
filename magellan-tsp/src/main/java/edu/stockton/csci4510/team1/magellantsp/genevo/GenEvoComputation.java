@@ -1,5 +1,6 @@
 package edu.stockton.csci4510.team1.magellantsp.genevo;
 
+import edu.stockton.csci4510.team1.magellantsp.util.Airport;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
