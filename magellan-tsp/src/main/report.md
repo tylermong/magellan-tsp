@@ -131,6 +131,15 @@ For our greedy hill climbers, implementation using Vincent Cicirello's "Chips-n-
 
 Within this output, we can see that while the reversal mutation yielded the lowest tour, the steepest descent approach had proven slightly better than first descent. This output also shows that the swap mutation might not be viable for hill climbing, as the outputs we got are way too large in comparison to that of reversal and insertion mutation application.
 
+## Conclusion
+
+This project showed that evolutionary computation is a practical and effective way to approach a global Traveling Salesperson Problem; one that involves visiting an airport in every country and minimizing the total travel distance. By using real geographic data and the Haversine formula, we grounded our algorithms in realities of international travel, giving our results meaningful real world relevance.
+
+Across all experiments, we found that while crossover and mutation operators create valuable diversity, they are not enough on their own to consistently produce strong solutions. Simulated annealing stood out for its ability to escape local minima by occasionally accepting worse solutions early in a search leading to more reliable results compared to mutation alone.
+
+Overall, our findings reinforce that hybrid approaches, those that combine evolutionary operators with local optimization, are especially powerful for solving large, complex problems like TSP. Beyond the results obtained, this project strengthened our ability to work effectively within a team, solve problems collaboratively and understand how optimization methods can be applied to real world scenarios.
+
+
 ## References
 
 Cicirello, Vincent A. (2022). Chips-n-Salsa: A Java library for optimization and search algorithms [Computer software]. https://chips-n-salsa.cicirello.org/
