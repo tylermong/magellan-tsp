@@ -69,18 +69,26 @@ Each operator recombined two parent tours to generate new, diverse solutions. Al
 •	Swap
 •	Insertion
 •	Reversal
+
 Mutations introduced additional variation to avoid premature convergence.
 
 #### Local Search Algorithms (Owen):
 •	Steepest-Ascent Hill Climbing
 •	First-Choice Hill Climbing
+
 These methods iteratively improved a tour by exploring neighboring permutations.
 
 #### Simulated Annealing (Michael):
 Implemented with both insertion and swap mutations to compare performance across cooling schedules and random restarts.
-Generational Evolutionary Algorithm (Tasnim):
+
+#### Generational Evolutionary Algorithm (Tasnim):
 Included permutation initialization, elitism, and multiple crossover operators to explore population-based optimization.
 
+#### Greedy Algorithms (Tyler):
+• Nearest Neigbor
+• Repeated Nearest Neighbor
+
+These methods were implemented to outline how good results can be constrained by long run times with larger datasets.
 
 5. Experimental Procedure
 For each algorithm, we conducted multiple runs to evaluate consistency and robustness. Across these runs we recorded:
