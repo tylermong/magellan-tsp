@@ -21,17 +21,16 @@ public class SimulatedAnnealingTSP {
   private final int RUNS;
 
   // container for airport data
-  static class City {
-    final String name;
-    final double latDeg;
-    final double lonDeg;
-
-    City(String name, double latDeg, double lonDeg) {
-      this.name = name;
+  public static class City {
+    public final double latDeg;
+    public final double lonDeg;
+  
+    public City(double latDeg, double lonDeg) {
       this.latDeg = latDeg;
       this.lonDeg = lonDeg;
     }
   }
+  
 
   // store airport data
   private final List<City> cities;
@@ -153,22 +152,18 @@ public class SimulatedAnnealingTSP {
     // print summary for each run
     for (int rank = 0; rank < summaries.size(); rank++) {
       RunSummary r = summaries.get(rank);
-      City startCity = cities.get(r.firstIdx);
-      City endCity = cities.get(r.lastIdx);
 
       System.out.printf(
           "#%d  (Run %d)%n" +
               "  Cost: %.3f km%n" +
               "  Time: %.3f s%n" +
-              "  Start: %s (index %d)%n" +
-              "  End:   %s (index %d)%n%n",
+              "  Start index: %d%n" +
+              "  End index:   %d%n%n",
           rank + 1,
           r.runNumber,
           r.costKm,
           r.seconds,
-          startCity.name,
           r.firstIdx,
-          endCity.name,
           r.lastIdx);
     }
 
