@@ -3,6 +3,9 @@ package edu.stockton.csci4510.team1.magellantsp;
 import edu.stockton.csci4510.team1.magellantsp.greedy.GreedyTester;
 import edu.stockton.csci4510.team1.magellantsp.simulatedannealing.InsertionMutationTSP;
 import edu.stockton.csci4510.team1.magellantsp.simulatedannealing.SimulatedAnnealingTSP;
+import edu.stockton.csci4510.team1.magellantsp.util.Airport;
+import edu.stockton.csci4510.team1.magellantsp.util.AirportLoader;
+import edu.stockton.csci4510.team1.magellantsp.util.HaversineDistance;
 import java.io.*;
 import java.util.*;
 

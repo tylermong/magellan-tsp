@@ -1,6 +1,6 @@
 package edu.stockton.csci4510.team1.magellantsp.greedy;
 
-import edu.stockton.csci4510.team1.magellantsp.Airport;
+import edu.stockton.csci4510.team1.magellantsp.util.Airport;
 import java.util.List;
 
 public class GreedyTester {

@@ -40,7 +40,7 @@ public class HillClimbingTSP {
 
     Configurator.configureRandomGenerator(213);
     PermutationInitializer init = new PermutationInitializer(n);
-    int restarts = 10; //FIX: from 1 to 10
+    int restarts = 10; // FIX: from 1 to 10
 
     // fd = first descent, st steepest descent
     int totalSteps = 6;
