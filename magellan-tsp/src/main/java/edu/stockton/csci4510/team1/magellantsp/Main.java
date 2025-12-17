@@ -31,9 +31,10 @@ public class Main {
                                            double[][] distanceMatrix) {
 
     List<SimulatedAnnealingTSP.City> cities = new ArrayList<>();
+
     for (Airport a : airports) {
       cities.add(new SimulatedAnnealingTSP.City(
-          a.getName(), a.getLatitude(), a.getLongitude()));
+          a.getLatitude(), a.getLongitude()));
     }
 
     SimulatedAnnealingTSP sa =
@@ -48,7 +49,7 @@ public class Main {
     List<InsertionMutationTSP.City> cities = new ArrayList<>();
     for (Airport a : airports) {
       cities.add(new InsertionMutationTSP.City(
-          a.getName(), a.getLatitude(), a.getLongitude()));
+          a.getLatitude(), a.getLongitude()));
     }
 
     InsertionMutationTSP im =
