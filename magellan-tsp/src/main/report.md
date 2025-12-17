@@ -47,3 +47,10 @@ For our greedy hill climbers, implementation using Vincent Cicirello's "Chips-n-
  ![Hill Climbing TSP Output](outputs/HillClimbingTSP-output.png)
 
 Within this output, we can see that while the reversal mutation yielded the lowest tour, the steepest descent approach had proven slightly better than first descent. This output also shows that the swap mutation might not be viable for hill climbing, as the outputs we got are way too large in comparison to that of reversal and insertion mutation application.
+
+##References
+
+Cicirello, V. A. (2022). Chips-n-Salsa: A Java library for optimization and search algorithms [Computer software]. https://chips-n-salsa.cicirello.org/
+
+OurAirports. https://ourairports.com/
+
