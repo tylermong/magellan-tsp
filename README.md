@@ -12,7 +12,7 @@ Magellan-TSP is a Java-based simulation of the Traveling Salesperson Problem (TS
     -   **Hill Climbing**: Steepest Descent and First Descent with various mutations (Swap, Insertion, Reversal).
     -   **Simulated Annealing**: Optimization with temperature decay to escape local optima.
     -   **Evolutionary/Genetic Algorithms**: Crossover operators (Order, Partially Matched, Cycle) combined with 3-opt local search.
-    -   **Genetic Algorithms**: TODO.
+    -   **Generational Evolutionary Computation**: Uses permutation, elitism, and various crossover strategies (Order, PMX, Cycle).
     -   **Repeated Nearest Neighbor**: Baseline algorithm for comparison.
 -   **Performance Analysis**: Compares the tour lengths and execution times of different approaches.
 
